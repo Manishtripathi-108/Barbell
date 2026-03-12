@@ -1,47 +1,33 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 
-const HIGHLIGHT = 'fill-[#ff2a2a]';
+import { useMuscleHighlight } from '@/hooks/useMuscleHighlight';
 
 export const PosteriorSvg = ({
     className,
     activeMuscles,
     hoverMuscle,
     onMove,
+    onLeave,
 }: {
     className?: string;
     activeMuscles: string[];
     hoverMuscle: string | null;
     onMove: React.MouseEventHandler<SVGSVGElement>;
+    onLeave: React.MouseEventHandler<SVGSVGElement>;
 }) => {
     const svgRef = useRef<SVGSVGElement | null>(null);
 
-    useEffect(() => {
-        const svg = svgRef.current;
-        if (!svg) return;
-
-        const group = svg.querySelector<SVGGElement>('#muscles-posterior');
-        if (!group) return;
-
-        for (const el of group.children) {
-            el.classList.remove(HIGHLIGHT);
-            el.classList.add('fill-yellow-500');
-        }
-
-        for (const id of activeMuscles) {
-            const el = svg.querySelector<SVGElement>(`#${id}`);
-            el?.classList.remove('fill-yellow-500');
-            el?.classList.add(HIGHLIGHT);
-        }
-
-        if (hoverMuscle) {
-            const el = svg.querySelector<SVGElement>(`#${hoverMuscle}`);
-            el?.classList.remove('fill-yellow-500');
-            el?.classList.add(HIGHLIGHT);
-        }
-    }, [activeMuscles, hoverMuscle]);
+    useMuscleHighlight(svgRef, activeMuscles, hoverMuscle);
 
     return (
-        <svg ref={svgRef} id="posterior" onMouseOver={onMove} className={className} viewBox="0 0 1496 2848" xmlns="http://www.w3.org/2000/svg">
+        <svg
+            ref={svgRef}
+            id="posterior"
+            onMouseOver={onMove}
+            onMouseLeave={onLeave}
+            className={className}
+            viewBox="0 0 1496 2848"
+            xmlns="http://www.w3.org/2000/svg">
             <path
                 id="skin"
                 className="fill-[#fde8cd]"

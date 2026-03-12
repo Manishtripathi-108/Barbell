@@ -329,6 +329,7 @@
 }
 
 @layer base {
+
     *,
     ::after,
     ::before,
@@ -346,13 +347,11 @@
     --gradient-dark: var(--color-primary);
     --gradient-light: var(--color-secondary);
 
-    background-image: linear-gradient(
-        to left,
-        var(--gradient-dark) 0%,
-        var(--gradient-light) 10%,
-        var(--gradient-light) 90%,
-        var(--gradient-dark) 100%
-    );
+    background-image: linear-gradient(to left,
+            var(--gradient-dark) 0%,
+            var(--gradient-light) 10%,
+            var(--gradient-light) 90%,
+            var(--gradient-dark) 100%);
 }
 
 @utility scrollbar-thin {
@@ -518,19 +517,19 @@
     .radio-field {
         @apply appearance-none;
 
-        &:not(:disabled, :checked):focus-visible ~ .radio-indicator {
+        &:not(:disabled, :checked):focus-visible~.radio-indicator {
             @apply outline;
         }
 
-        &:checked ~ .form-text {
+        &:checked~.form-text {
             @apply text-highlight translate-x-2;
         }
 
-        &:checked ~ .radio-indicator:before {
+        &:checked~.radio-indicator:before {
             @apply shadow-pressed-xs;
         }
 
-        &:not(:disabled, :checked):focus ~ .form-text {
+        &:not(:disabled, :checked):focus~.form-text {
             @apply text-text-primary translate-x-2;
         }
     }
@@ -539,7 +538,7 @@
         @apply shadow-floating-xs before:shadow-floating-xs relative size-5 overflow-hidden rounded-full before:absolute before:top-[10%] before:left-[10%] before:size-4/5 before:rounded-full;
     }
 
-    &:hover .radio-field:not(:disabled, :checked) ~ .form-text {
+    &:hover .radio-field:not(:disabled, :checked)~.form-text {
         @apply text-text-primary translate-x-2;
     }
 }
@@ -548,4 +547,13 @@
 ::view-transition-new(root) {
     animation: none;
     mix-blend-mode: normal;
+
+    /* -------------------------------------------------------------------------- */
+    /*                          Muscle path interactivity                         */
+    /* -------------------------------------------------------------------------- */
+    #muscles-anterior path,
+    #muscles-posterior path {
+        transition: fill 0.12s ease;
+        cursor: pointer;
+    }
 }
