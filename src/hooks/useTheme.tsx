@@ -7,6 +7,21 @@ import { isBrowser } from '@/lib/utils/core.utils';
 
 type ThemeType = 'light' | 'dark' | 'system';
 
+type ThemeMetaMode = 'css-variable' | 'custom';
+
+type ThemeMetaConfig = {
+    mode?: ThemeMetaMode;
+    light?: string;
+    dark?: string;
+    cssVar?: string;
+};
+
+type ThemeChangeDetail = {
+    theme: ThemeType;
+    resolvedTheme: 'light' | 'dark';
+    duration: number;
+};
+
 const THEME_KEY = 'theme';
 const THEME_CHANGE_EVENT = 'barbell-theme-change';
 
@@ -29,7 +44,7 @@ const getSystemTheme = (): 'light' | 'dark' => (window.matchMedia('(prefers-colo
 const resolveTheme = (theme: ThemeType): 'light' | 'dark' => (theme === 'system' ? getSystemTheme() : theme);
 
 /* Apply theme to DOM root and update meta theme color. */
-const applyThemeToDOM = (theme: 'light' | 'dark') => {
+const applyThemeToDOM = (theme: 'light' | 'dark', metaConfig: ThemeMetaConfig | undefined) => {
     const root = document.documentElement;
 
     if (root.dataset.theme === theme) return;
@@ -39,10 +54,18 @@ const applyThemeToDOM = (theme: 'light' | 'dark') => {
 
     const meta = document.querySelector('meta[name="theme-color"]');
 
-    if (meta) {
-        const color = getComputedStyle(root).getPropertyValue('--color-primary');
-        meta.setAttribute('content', color);
+    if (!meta) return;
+
+    let color = '';
+
+    if (metaConfig?.mode === 'custom') {
+        color = theme === 'dark' ? (metaConfig.dark ?? '') : (metaConfig.light ?? '');
+    } else {
+        const variable = metaConfig?.cssVar ?? '--color-primary';
+        color = getComputedStyle(root).getPropertyValue(variable);
     }
+
+    if (color) meta.setAttribute('content', color.trim());
 };
 
 const getNextTheme = (theme: ThemeType): ThemeType => {
@@ -72,23 +95,128 @@ const subscribeToTheme = (onStoreChange: () => void) => {
     };
 };
 
-const useTheme = ({ duration = 400 }: { duration?: number } = {}) => {
+/**
+ * React hook that manages application color theme.
+ *
+ * Supports three theme states
+ * light
+ * dark
+ * system
+ *
+ * Features
+ * - Persists theme in localStorage
+ * - Syncs theme across browser tabs
+ * - Syncs theme within the same tab using a custom event
+ * - Resolves system theme using prefers-color-scheme
+ * - Updates DOM attributes and Tailwind dark class
+ * - Updates meta theme-color for mobile browser UI
+ * - Optional animated toggle using the View Transition API
+ *
+ * DOM changes
+ * - Sets data-theme on document.documentElement
+ * - Toggles the "dark" class on the root element
+ * - Updates meta[name="theme-color"]
+ *
+ * Storage
+ * - Theme is stored under the key "theme"
+ *
+ * Cross tab sync
+ * - Uses the storage event
+ *
+ * Same tab sync
+ * - Uses the custom event "barbell-theme-change"
+ *
+ * @param options Configuration object
+ *
+ * @param options.duration
+ * Duration of the theme transition animation in milliseconds.
+ * Used by the View Transition API animation.
+ * Default is 400.
+ *
+ * @param options.meta
+ * Configuration for the browser theme-color meta tag.
+ *
+ * meta modes
+ * - "css-variable"
+ *   Reads a CSS variable from the root element.
+ *
+ * - "custom"
+ *   Uses explicit colors for light and dark themes.
+ *
+ * @example
+ * const {
+ *   theme,
+ *   nextTheme,
+ *   setTheme,
+ *   cycleTheme,
+ *   animateToggleTheme
+ * } = useTheme()
+ *
+ * @returns Object containing theme state and helpers
+ *
+ * @returns theme
+ * Current theme value stored in localStorage.
+ * Possible values are "light", "dark", or "system".
+ *
+ * @returns nextTheme
+ * Next theme in the cycle order.
+ * light → dark → system → light
+ *
+ * @returns setTheme
+ * Sets the theme directly or via updater function.
+ *
+ * @example
+ * setTheme('dark')
+ *
+ * @example
+ * setTheme(prev => prev === 'dark' ? 'light' : 'dark')
+ *
+ * @returns cycleTheme
+ * Advances the theme to the next value in the cycle.
+ *
+ * @returns animateToggleTheme
+ * Toggles theme with a circular reveal animation using
+ * the View Transition API when supported.
+ *
+ * Accepts optional click coordinates so the animation
+ * can start from the interaction point.
+ *
+ * @param x Optional x coordinate of the animation origin
+ * @param y Optional y coordinate of the animation origin
+ */
+const useTheme = ({
+    duration = 400,
+    meta,
+}: {
+    duration?: number;
+    meta?: ThemeMetaConfig;
+} = {}) => {
     const theme = useSyncExternalStore<ThemeType>(subscribeToTheme, getStoredTheme, () => 'system');
 
     const nextTheme = getNextTheme(theme);
 
-    const applyTheme = useCallback((themeValue: ThemeType) => {
-        const resolved = resolveTheme(themeValue);
+    const applyTheme = useCallback(
+        (themeValue: ThemeType) => {
+            const resolved = resolveTheme(themeValue);
 
-        applyThemeToDOM(resolved);
+            applyThemeToDOM(resolved, meta);
 
-        if (isBrowser) {
-            localStorage.setItem(THEME_KEY, themeValue);
+            if (isBrowser) {
+                localStorage.setItem(THEME_KEY, themeValue);
 
-            /* Notify same tab listeners. */
-            window.dispatchEvent(new Event(THEME_CHANGE_EVENT));
-        }
-    }, []);
+                const event = new CustomEvent<ThemeChangeDetail>(THEME_CHANGE_EVENT, {
+                    detail: {
+                        theme: themeValue,
+                        resolvedTheme: resolved,
+                        duration,
+                    },
+                });
+
+                window.dispatchEvent(event);
+            }
+        },
+        [meta, duration]
+    );
 
     const setTheme = useCallback(
         (value: ThemeType | ((theme: ThemeType) => ThemeType)) => {
@@ -108,11 +236,9 @@ const useTheme = ({ duration = 400 }: { duration?: number } = {}) => {
         if (theme !== 'system') return;
 
         const media = window.matchMedia('(prefers-color-scheme: dark)');
-
         const handleChange = () => applyTheme('system');
 
         media.addEventListener('change', handleChange);
-
         return () => media.removeEventListener('change', handleChange);
     }, [theme, applyTheme]);
 
@@ -162,7 +288,21 @@ const useTheme = ({ duration = 400 }: { duration?: number } = {}) => {
     };
 };
 
-/* Runs before React hydration to prevent theme flash. */
+/**
+ * Inline script that runs before React hydration.
+ *
+ * Prevents a flash of incorrect theme by applying
+ * the stored theme immediately during page load.
+ *
+ * Behavior
+ * - Reads theme from localStorage
+ * - Falls back to system preference when needed
+ * - Applies data-theme attribute to the root element
+ * - Toggles the dark class for Tailwind compatibility
+ *
+ * This component should be rendered inside the document
+ * head so the theme is applied before React mounts.
+ */
 export const ThemeScript = () => {
     return (
         <script
