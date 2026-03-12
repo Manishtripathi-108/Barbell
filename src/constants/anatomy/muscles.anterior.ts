@@ -5,9 +5,19 @@ export const ANTERIOR_MUSCLES = [
 	{ id: "sternohyoid", name: "Sternohyoid", group: "neck" },
 	{ id: "omohyoid", name: "Omohyoid", group: "neck" },
 
+	{ id: "brachioradialis", name: "Brachioradialis", group: "forearms" },
+	{ id: "palmaris-longus", name: "Palmaris Longus", group: "forearms" },
+	{ id: "pronator-teres", name: "Pronator Teres", group: "forearms" },
+	{ id: "flexor-carpi-radialis", name: "Flexor Carpi Radialis", group: "forearms" },
+	{ id: "flexor-carpi-ulnaris", name: "Flexor Carpi Ulnaris", group: "forearms" },
+	{ id: "flexor-digitorum-superficialis", name: "Flexor Digitorum Superficialis", group: "forearms" },
+	{ id: "extensor-carpi-radialis-longus", name: "Extensor Carpi Radialis Longus", group: "forearms" },
+
+	{ id: "hands", name: "Hands", group: "hands" },
+
 	{ id: "front-deltoid", name: "Front Deltoid", group: "shoulders" },
 	{ id: "middle-deltoid", name: "Middle Deltoid", group: "shoulders" },
-	{ id: "trapezius", name: "Trapezius", group: "shoulders" },
+	{ id: "upper-traps", name: "Upper Traps", group: "shoulders" },
 
 	{ id: "upper-chest", name: "Upper Chest", group: "chest" },
 	{ id: "middle-chest", name: "Middle Chest", group: "chest" },
@@ -28,14 +38,6 @@ export const ANTERIOR_MUSCLES = [
 	{ id: "biceps-brachii", name: "Biceps Brachii", group: "biceps" },
 	{ id: "brachialis", name: "Brachialis", group: "biceps" },
 	{ id: "triceps-brachii", name: "Triceps Brachii", group: "triceps" },
-
-	{ id: "brachioradialis", name: "Brachioradialis", group: "forearms" },
-	{ id: "palmaris-longus", name: "Palmaris Longus", group: "forearms" },
-	{ id: "pronator-teres", name: "Pronator Teres", group: "forearms" },
-	{ id: "flexor-carpi-radialis", name: "Flexor Carpi Radialis", group: "forearms" },
-	{ id: "flexor-carpi-ulnaris", name: "Flexor Carpi Ulnaris", group: "forearms" },
-	{ id: "flexor-digitorum-superficialis", name: "Flexor Digitorum Superficialis", group: "forearms" },
-	{ id: "extensor-carpi-radialis-longus", name: "Extensor Carpi Radialis Longus", group: "forearms" },
 
 	{ id: "rectus-femoris", name: "Rectus Femoris", group: "quads" },
 	{ id: "vastus-lateralis", name: "Vastus Lateralis", group: "quads" },
