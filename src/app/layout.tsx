@@ -1,5 +1,13 @@
+import { Space_Grotesk } from 'next/font/google';
+
 import '@/app/globals.css';
 import { ThemeScript } from '@/hooks/useTheme';
+
+const spaceGrotesk = Space_Grotesk({
+    subsets: ['latin'],
+    variable: '--font-space-grotesk',
+    display: 'swap',
+});
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
     return (
@@ -10,7 +18,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
                 <meta name="apple-mobile-web-app-title" content="" />
                 <ThemeScript />
             </head>
-            <body className={`bg-primary scrollbar-thin font-karla transition-colors duration-300`}>{children}</body>
+            <body className={`${spaceGrotesk.variable} bg-background font-sans transition-colors duration-300`}>{children}</body>
         </html>
     );
 };

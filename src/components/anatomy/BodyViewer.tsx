@@ -40,11 +40,11 @@ export function BodyViewer() {
 
     return (
         <div className="flex flex-col items-center gap-10 sm:flex-row sm:items-start sm:justify-center sm:gap-14">
-            <button className="text-theme-text-primary text-sm font-semibold tracking-widest" onClick={() => toggleIsAdvanced()}>
+            <button className="text-foreground text-sm font-semibold tracking-widest" onClick={() => toggleIsAdvanced()}>
                 {isAdvanced ? 'Basic' : 'Advanced'}
             </button>
             <div className="flex flex-col items-center gap-3">
-                <span className="text-theme-text-secondary text-xs font-semibold tracking-widest uppercase">Front</span>
+                <span className="text-muted-foreground text-xs font-semibold tracking-widest uppercase">Front</span>
                 <AnteriorSvg
                     className="h-auto w-52 sm:w-56 md:w-82"
                     hoverMuscle={hover}
@@ -54,7 +54,7 @@ export function BodyViewer() {
                 />
             </div>
             <div className="flex flex-col items-center gap-3">
-                <span className="text-theme-text-secondary text-xs font-semibold tracking-widest uppercase">Back</span>
+                <span className="text-muted-foreground text-xs font-semibold tracking-widest uppercase">Back</span>
                 <PosteriorSvg
                     className="h-auto w-52 sm:w-56 md:w-82"
                     hoverMuscle={hover}
