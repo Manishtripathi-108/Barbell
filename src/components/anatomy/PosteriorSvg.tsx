@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 
-import { type AnatomySvgColorOverrides, resolveAnatomySvgColors } from '@/components/anatomy/anatomyColors';
+import { ANATOMY_SVG_COLORS } from '@/components/anatomy/anatomyColors';
 import { useMuscleHighlight } from '@/hooks/useMuscleHighlight';
 
 export const PosteriorSvg = ({
@@ -9,17 +9,15 @@ export const PosteriorSvg = ({
     hoverMuscle,
     onMove,
     onLeave,
-    colors,
 }: {
     className?: string;
     activeMuscles: string[];
     hoverMuscle: string | null;
     onMove: React.MouseEventHandler<SVGSVGElement>;
     onLeave: React.MouseEventHandler<SVGSVGElement>;
-    colors?: AnatomySvgColorOverrides;
 }) => {
     const svgRef = useRef<SVGSVGElement | null>(null);
-    const { skin, outline, nonMuscle, muscleActive, muscleInactive } = resolveAnatomySvgColors(colors);
+    const { skin, outline, nonMuscle, muscleActive,  muscleInactive } = ANATOMY_SVG_COLORS;
 
     useMuscleHighlight(svgRef, activeMuscles, hoverMuscle, {
         activeFill: muscleActive,

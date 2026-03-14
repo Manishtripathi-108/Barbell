@@ -13,10 +13,7 @@ export const useMuscleHighlight = (
     svgRef: { current: SVGSVGElement | null },
     activeMuscles: string[],
     hoverMuscle: string | null,
-    options: MuscleHighlightOptions = {
-        activeFill: '#ff2a2a',
-        inactiveFill: 'transparent',
-    }
+    options: MuscleHighlightOptions
 ): void => {
     const prevRef = useRef<Set<string>>(new Set());
 
@@ -24,18 +21,24 @@ export const useMuscleHighlight = (
         const svg = svgRef.current;
         if (!svg) return;
 
+        const activeSet = new Set(activeMuscles);
         const next = new Set(activeMuscles);
-        if (hoverMuscle) next.add(hoverMuscle);
+        if (hoverMuscle) {
+            next.add(hoverMuscle);
+        }
 
         const prev = prevRef.current;
         const ids = new Set([...prev, ...next]);
 
-        // Apply active/inactive fills for every changed muscle id, and repaint
-        // previous targets when colors change.
+        // Hover color takes priority over active color, and any previous targets
+        // are repainted when color options change.
         for (const id of ids) {
             const el = svg.querySelector<SVGElement>(`#${id}`);
             if (el) {
-                el.style.fill = next.has(id) ? options.activeFill : options.inactiveFill;
+                const isHovered = hoverMuscle === id;
+                const isActive = activeSet.has(id);
+
+                el.style.fill = isHovered || isActive ? options.activeFill : options.inactiveFill;
             }
         }
 

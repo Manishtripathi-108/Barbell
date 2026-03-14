@@ -8,15 +8,10 @@ export type AnatomySvgColors = {
 
 export type AnatomySvgColorOverrides = Partial<AnatomySvgColors>;
 
-export const DEFAULT_ANATOMY_SVG_COLORS: AnatomySvgColors = {
-    skin: '#fde8cd',
-    outline: '#000000',
-    nonMuscle: '#ff8080',
-    muscleActive: '#ff2a2a',
-    muscleInactive: 'transparent',
+export const ANATOMY_SVG_COLORS: AnatomySvgColors = {
+    skin: '#F2C6A8',
+    outline: '#3A2F2A',
+    nonMuscle: '#E9D6C8',
+    muscleActive: '#C62828',
+    muscleInactive: '#F19999',
 };
-
-export const resolveAnatomySvgColors = (overrides?: AnatomySvgColorOverrides): AnatomySvgColors => ({
-    ...DEFAULT_ANATOMY_SVG_COLORS,
-    ...overrides,
-});
