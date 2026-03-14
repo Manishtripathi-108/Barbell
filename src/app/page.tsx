@@ -4,7 +4,7 @@ import ThemeToggler from '@/components/ui/ThemeToggler';
 export default function Home() {
     return (
         <div className="bg-background relative min-h-screen overflow-hidden">
-            <div className="from-primary/8 pointer-events-none absolute inset-x-0 -top-48 h-96 bg-gradient-to-b to-transparent blur-2xl" />
+            <div className="from-primary/8 pointer-events-none absolute inset-x-0 -top-48 h-96 bg-linear-to-b to-transparent blur-2xl" />
 
             <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-5 pt-8 pb-10 sm:px-8 lg:px-10">
                 <header className="mb-8 flex items-start justify-between gap-4 sm:mb-10">
