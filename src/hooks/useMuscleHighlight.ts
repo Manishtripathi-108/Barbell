@@ -7,7 +7,7 @@ const ACTIVE_CLASS = 'fill-[#ff2a2a]';
  * Efficiently highlights muscle paths inside an SVG by diffing against the
  * previous highlighted set — only changed elements receive DOM updates.
  */
-export function useMuscleHighlight(svgRef: { current: SVGSVGElement | null }, activeMuscles: string[], hoverMuscle: string | null): void {
+export const useMuscleHighlight = (svgRef: { current: SVGSVGElement | null }, activeMuscles: string[], hoverMuscle: string | null): void => {
     const prevRef = useRef<Set<string>>(new Set());
 
     useEffect(() => {
@@ -43,4 +43,4 @@ export function useMuscleHighlight(svgRef: { current: SVGSVGElement | null }, ac
 
         prevRef.current = next;
     }, [svgRef, activeMuscles, hoverMuscle]);
-}
+};

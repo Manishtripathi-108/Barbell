@@ -17,7 +17,8 @@ export const ANTERIOR_MUSCLES = [
 
     { id: 'front-deltoid', name: 'Front Deltoid', group: 'shoulders' },
     { id: 'middle-deltoid', name: 'Middle Deltoid', group: 'shoulders' },
-    { id: 'upper-traps', name: 'Upper Traps', group: 'shoulders' },
+    
+    { id: 'upper-traps', name: 'Upper Traps', group: 'traps' },
 
     { id: 'upper-chest', name: 'Upper Chest', group: 'chest' },
     { id: 'middle-chest', name: 'Middle Chest', group: 'chest' },

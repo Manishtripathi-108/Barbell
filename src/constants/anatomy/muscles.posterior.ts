@@ -2,9 +2,10 @@ export const POSTERIOR_MUSCLES = [
     { id: 'sternocleidomastoid', name: 'Sternocleidomastoid', group: 'neck' },
     { id: 'splenius-capitis', name: 'Splenius Capitis', group: 'neck' },
 
-    { id: 'upper-traps', name: 'Upper Traps', group: 'shoulders' },
-    { id: 'middle-traps', name: 'Middle Traps', group: 'shoulders' },
-    { id: 'lower-traps', name: 'Lower Traps', group: 'shoulders' },
+    { id: 'upper-traps', name: 'Upper Traps', group: 'traps' },
+    { id: 'middle-traps', name: 'Middle Traps', group: 'traps' },
+    { id: 'lower-traps', name: 'Lower Traps', group: 'traps' },
+
     { id: 'middle-deltoid', name: 'Middle Deltoid', group: 'shoulders' },
     { id: 'back-deltoid', name: 'Back Deltoid', group: 'shoulders' },
 
