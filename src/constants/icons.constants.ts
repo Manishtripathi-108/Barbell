@@ -27,7 +27,7 @@ enum IconSet {
     /* ------------------------------------ D ----------------------------------- */
     database = 'solar:database-outline',
     diskImage = 'solar:diskette-outline',
-    desktop = 'noto:desktop-computer',
+    desktop = 'solar:monitor-bold',
     document = 'solar:document-text-outline',
     down = 'solar:alt-arrow-down-outline',
     download = 'solar:download-bold',

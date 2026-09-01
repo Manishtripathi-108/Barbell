@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useSyncExternalStore } from 'react';
+
 import { flushSync } from 'react-dom';
 
 import { isBrowser } from '@/lib/utils/core.utils';
@@ -227,20 +228,27 @@ const useTheme = ({
         [applyTheme]
     );
 
+    // Sync DOM on mount and when theme changes.
+    // Only touches the DOM - does NOT write to localStorage,
+    // so it can't overwrite the user's stored preference during hydration.
     useEffect(() => {
         if (!isBrowser) return;
 
-        applyTheme(theme);
+        const resolved = resolveTheme(theme);
+        applyThemeToDOM(resolved, meta);
 
-        /* When theme is system listen to OS preference changes. */
+        // When theme is system listen to OS preference changes.
         if (theme !== 'system') return;
 
         const media = window.matchMedia('(prefers-color-scheme: dark)');
-        const handleChange = () => applyTheme('system');
+        const handleChange = () => {
+            const resolved = resolveTheme('system');
+            applyThemeToDOM(resolved, meta);
+        };
 
         media.addEventListener('change', handleChange);
         return () => media.removeEventListener('change', handleChange);
-    }, [theme, applyTheme]);
+    }, [theme, meta]);
 
     const cycleTheme = useCallback(() => {
         setTheme((currentTheme) => getNextTheme(currentTheme));

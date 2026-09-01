@@ -1,5 +1,6 @@
 import { BodyViewer } from '@/components/anatomy/BodyViewer';
 import ThemeToggler from '@/components/ui/ThemeToggler';
+import { AppleStyleDock } from '@/components/ui/demo';
 
 export default function Home() {
     return (
@@ -58,6 +59,8 @@ export default function Home() {
                     </aside>
                 </main>
             </div>
+
+            <AppleStyleDock />
         </div>
     );
 }
