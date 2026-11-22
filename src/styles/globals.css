@@ -96,248 +96,12 @@
     /* Radius */
     --radius: 0.75rem;
 
-    /*
-     * Tactile Elevation System Controls:
-     *
-     * --elevation-scale:
-     *   Master geometric multiplier. Scales all offset, blur, and spread lengths
-     *   proportionally across all levels (2xs to 3xl). Increasing it creates a
-     *   more dramatic, expanded 3D physical depth field.
-     *
-     * --elevation-strength:
-     *   Global ink density multiplier. Scales the alpha opacity of directional
-     *   and ambient contact shadows. Higher values produce deep, punchy contrast;
-     *   lower values produce soft, diffuse shadows.
-     *
-     * --elevation-ink:
-     *   The OKLCH color coordinates (lightness, chroma, hue) for the dark shadow
-     *   falloff. Changing this tints all cast shadows to harmonize with the surface.
-     *
-     * --elevation-step:
-     *   Base spatial step calculated from (--elevation-unit * --elevation-scale).
-     *   Serves as the foundational unit for all derived distance and blur steps.
-     *
-     * --elevation-edge:
-     *   Hairline boundary ring/rim shadow computed from --elevation-ink and
-     *   --elevation-strength. Prevents low-contrast elements from bleeding into backgrounds.
-     *
-     * --elevation-highlight:
-     *   The OKLCH color coordinates for the top/left light source reflection
-     *   (specular edge). Typically pure white or a subtle tint of the background.
-     *
-     * --highlight-strength:
-     *   Specular highlight opacity multiplier. Controls the intensity of the
-     *   top/left tactile bevel. Higher values create an embossed, chiseled ridge;
-     *   lower values flatten specular reflection (essential in dark mode).
-     */
-    --elevation-unit: 1px;
-    --elevation-scale: 1;
-    --elevation-distance: 1;
-    --elevation-blur: 1;
-
-    /* Optional inset multipliers. Global distance and blur still affect inset shadows. */
-    --inset-elevation-distance-scale: 1;
-    --inset-elevation-blur-scale: 1;
-
-    /* Appearance and color controls */
-    --elevation-strength: 1;
-    --highlight-strength: 1;
-    --elevation-ink: 24% 0.018 260;
-    --elevation-highlight: 100% 0 0;
-
-    /* Derived lengths. Distance and blur change independently. */
-    --elevation-step: calc(var(--elevation-unit) * var(--elevation-scale));
-    --elevation-distance-step: calc(var(--elevation-step) * var(--elevation-distance));
-    --elevation-blur-step: calc(var(--elevation-step) * var(--elevation-blur));
-    --inset-elevation-distance-step: calc(var(--elevation-step) * var(--elevation-distance) * var(--inset-elevation-distance-scale));
-    --inset-elevation-blur-step: calc(var(--elevation-step) * var(--elevation-blur) * var(--inset-elevation-blur-scale));
-    --elevation-edge: oklch(var(--elevation-ink) / calc(0.05 * var(--elevation-strength)));
-
-    --elevation-2xs:
-        inset calc(var(--inset-elevation-distance-step) * 0.5) calc(var(--inset-elevation-distance-step) * 0.5)
-            calc(var(--inset-elevation-blur-step) * 0.5) 0 oklch(var(--elevation-highlight) / calc(0.8 * var(--highlight-strength))),
-        inset calc(var(--inset-elevation-distance-step) * -0.5) calc(var(--inset-elevation-distance-step) * -0.5)
-            calc(var(--inset-elevation-blur-step) * 0.5) 0 oklch(var(--elevation-ink) / calc(0.1 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 0.25) calc(var(--elevation-distance-step) * 0.25) calc(var(--elevation-blur-step) * 0.5)
-            calc(var(--elevation-step) * -0.5) oklch(var(--elevation-ink) / calc(0.18 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * -0.5) calc(var(--elevation-distance-step) * -0.5) calc(var(--elevation-blur-step) * 0)
-            calc(var(--elevation-step) * 0) oklch(var(--elevation-ink) / calc(0.04 * var(--elevation-strength)));
-
-    --elevation-xs:
-        inset calc(var(--inset-elevation-distance-step) * 1) calc(var(--inset-elevation-distance-step) * 1) calc(var(--inset-elevation-blur-step) * 1)
-            0 oklch(var(--elevation-highlight) / calc(0.9 * var(--highlight-strength))),
-        inset calc(var(--inset-elevation-distance-step) * -1) calc(var(--inset-elevation-distance-step) * -1)
-            calc(var(--inset-elevation-blur-step) * 1) 0 oklch(var(--elevation-ink) / calc(0.12 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 0.35) calc(var(--elevation-distance-step) * 0.35) calc(var(--elevation-blur-step) * 0.5)
-            calc(var(--elevation-step) * -0.75) oklch(var(--elevation-ink) / calc(0.22 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 0.85) calc(var(--elevation-distance-step) * 0.85) calc(var(--elevation-blur-step) * 1.2)
-            calc(var(--elevation-step) * -1) oklch(var(--elevation-ink) / calc(0.18 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * -0.5) calc(var(--elevation-distance-step) * -0.5) calc(var(--elevation-blur-step) * 0)
-            calc(var(--elevation-step) * 0) oklch(var(--elevation-ink) / calc(0.05 * var(--elevation-strength)));
-
-    --elevation-sm:
-        inset calc(var(--inset-elevation-distance-step) * 1) calc(var(--inset-elevation-distance-step) * 1) calc(var(--inset-elevation-blur-step) * 1)
-            0 oklch(var(--elevation-highlight) / calc(1 * var(--highlight-strength))),
-        inset calc(var(--inset-elevation-distance-step) * -1) calc(var(--inset-elevation-distance-step) * -1)
-            calc(var(--inset-elevation-blur-step) * 1) 0 oklch(var(--elevation-ink) / calc(0.15 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 0.444584) calc(var(--elevation-distance-step) * 0.444584) calc(var(--elevation-blur-step) * 0.628737)
-            calc(var(--elevation-step) * -1) oklch(var(--elevation-ink) / calc(0.26 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 1.21072) calc(var(--elevation-distance-step) * 1.21072) calc(var(--elevation-blur-step) * 1.71222)
-            calc(var(--elevation-step) * -1.5) oklch(var(--elevation-ink) / calc(0.247 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 2.6583) calc(var(--elevation-distance-step) * 2.6583) calc(var(--elevation-blur-step) * 3.75941)
-            calc(var(--elevation-step) * -2.25) oklch(var(--elevation-ink) / calc(0.23 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 5.90083) calc(var(--elevation-distance-step) * 5.90083) calc(var(--elevation-blur-step) * 8.34503)
-            calc(var(--elevation-step) * -3) oklch(var(--elevation-ink) / calc(0.192 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 10) calc(var(--elevation-distance-step) * 10) calc(var(--elevation-blur-step) * 21.2132)
-            calc(var(--elevation-step) * -3.75) oklch(var(--elevation-ink) / calc(0.056 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * -0.5) calc(var(--elevation-distance-step) * -0.5) calc(var(--elevation-blur-step) * 0)
-            calc(var(--elevation-step) * 0) oklch(var(--elevation-ink) / calc(0.05 * var(--elevation-strength)));
-
-    --elevation-md:
-        inset calc(var(--inset-elevation-distance-step) * 1) calc(var(--inset-elevation-distance-step) * 1) calc(var(--inset-elevation-blur-step) * 1)
-            0 oklch(var(--elevation-highlight) / calc(1 * var(--highlight-strength))),
-        inset calc(var(--inset-elevation-distance-step) * -1) calc(var(--inset-elevation-distance-step) * -1)
-            calc(var(--inset-elevation-blur-step) * 1) 0 oklch(var(--elevation-ink) / calc(0.16 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 0.8) calc(var(--elevation-distance-step) * 0.8) calc(var(--elevation-blur-step) * 1.2)
-            calc(var(--elevation-step) * -1) oklch(var(--elevation-ink) / calc(0.24 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 2) calc(var(--elevation-distance-step) * 2) calc(var(--elevation-blur-step) * 2.8)
-            calc(var(--elevation-step) * -1.5) oklch(var(--elevation-ink) / calc(0.22 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 4.5) calc(var(--elevation-distance-step) * 4.5) calc(var(--elevation-blur-step) * 6.4)
-            calc(var(--elevation-step) * -2.5) oklch(var(--elevation-ink) / calc(0.2 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 10) calc(var(--elevation-distance-step) * 10) calc(var(--elevation-blur-step) * 14.1)
-            calc(var(--elevation-step) * -3.5) oklch(var(--elevation-ink) / calc(0.16 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 18) calc(var(--elevation-distance-step) * 18) calc(var(--elevation-blur-step) * 32)
-            calc(var(--elevation-step) * -4.5) oklch(var(--elevation-ink) / calc(0.06 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * -0.5) calc(var(--elevation-distance-step) * -0.5) calc(var(--elevation-blur-step) * 0)
-            calc(var(--elevation-step) * 0) oklch(var(--elevation-ink) / calc(0.05 * var(--elevation-strength)));
-
-    --elevation-lg:
-        inset calc(var(--inset-elevation-distance-step) * 1) calc(var(--inset-elevation-distance-step) * 1)
-            calc(var(--inset-elevation-blur-step) * 1.5) 0 oklch(var(--elevation-highlight) / calc(1 * var(--highlight-strength))),
-        inset calc(var(--inset-elevation-distance-step) * -1) calc(var(--inset-elevation-distance-step) * -1)
-            calc(var(--inset-elevation-blur-step) * 1.5) 0 oklch(var(--elevation-ink) / calc(0.18 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 1.5) calc(var(--elevation-distance-step) * 1.5) calc(var(--elevation-blur-step) * 2)
-            calc(var(--elevation-step) * -1.5) oklch(var(--elevation-ink) / calc(0.24 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 3.5) calc(var(--elevation-distance-step) * 3.5) calc(var(--elevation-blur-step) * 5)
-            calc(var(--elevation-step) * -2) oklch(var(--elevation-ink) / calc(0.22 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 8) calc(var(--elevation-distance-step) * 8) calc(var(--elevation-blur-step) * 11.3)
-            calc(var(--elevation-step) * -3) oklch(var(--elevation-ink) / calc(0.19 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 18) calc(var(--elevation-distance-step) * 18) calc(var(--elevation-blur-step) * 25.5)
-            calc(var(--elevation-step) * -5) oklch(var(--elevation-ink) / calc(0.15 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 32) calc(var(--elevation-distance-step) * 32) calc(var(--elevation-blur-step) * 56)
-            calc(var(--elevation-step) * -6.5) oklch(var(--elevation-ink) / calc(0.07 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * -0.5) calc(var(--elevation-distance-step) * -0.5) calc(var(--elevation-blur-step) * 0)
-            calc(var(--elevation-step) * 0) oklch(var(--elevation-ink) / calc(0.05 * var(--elevation-strength)));
-
-    --elevation-xl:
-        inset calc(var(--inset-elevation-distance-step) * 1) calc(var(--inset-elevation-distance-step) * 1)
-            calc(var(--inset-elevation-blur-step) * 1.5) 0 oklch(var(--elevation-highlight) / calc(1 * var(--highlight-strength))),
-        inset calc(var(--inset-elevation-distance-step) * -1) calc(var(--inset-elevation-distance-step) * -1)
-            calc(var(--inset-elevation-blur-step) * 1.5) 0 oklch(var(--elevation-ink) / calc(0.2 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 2.5) calc(var(--elevation-distance-step) * 2.5) calc(var(--elevation-blur-step) * 3.5)
-            calc(var(--elevation-step) * -2) oklch(var(--elevation-ink) / calc(0.25 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 6) calc(var(--elevation-distance-step) * 6) calc(var(--elevation-blur-step) * 8.5)
-            calc(var(--elevation-step) * -3) oklch(var(--elevation-ink) / calc(0.22 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 14) calc(var(--elevation-distance-step) * 14) calc(var(--elevation-blur-step) * 19.8)
-            calc(var(--elevation-step) * -5) oklch(var(--elevation-ink) / calc(0.18 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 30) calc(var(--elevation-distance-step) * 30) calc(var(--elevation-blur-step) * 42.4)
-            calc(var(--elevation-step) * -8) oklch(var(--elevation-ink) / calc(0.14 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 54) calc(var(--elevation-distance-step) * 54) calc(var(--elevation-blur-step) * 88)
-            calc(var(--elevation-step) * -12) oklch(var(--elevation-ink) / calc(0.08 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * -0.5) calc(var(--elevation-distance-step) * -0.5) calc(var(--elevation-blur-step) * 0)
-            calc(var(--elevation-step) * 0) oklch(var(--elevation-ink) / calc(0.06 * var(--elevation-strength)));
-
-    --elevation-2xl:
-        inset calc(var(--inset-elevation-distance-step) * 1) calc(var(--inset-elevation-distance-step) * 1) calc(var(--inset-elevation-blur-step) * 2)
-            0 oklch(var(--elevation-highlight) / calc(1 * var(--highlight-strength))),
-        inset calc(var(--inset-elevation-distance-step) * -1) calc(var(--inset-elevation-distance-step) * -1)
-            calc(var(--inset-elevation-blur-step) * 2) 0 oklch(var(--elevation-ink) / calc(0.22 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 3.5) calc(var(--elevation-distance-step) * 3.5) calc(var(--elevation-blur-step) * 5)
-            calc(var(--elevation-step) * -2.5) oklch(var(--elevation-ink) / calc(0.26 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 9) calc(var(--elevation-distance-step) * 9) calc(var(--elevation-blur-step) * 12.7)
-            calc(var(--elevation-step) * -4) oklch(var(--elevation-ink) / calc(0.23 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 22) calc(var(--elevation-distance-step) * 22) calc(var(--elevation-blur-step) * 31)
-            calc(var(--elevation-step) * -7) oklch(var(--elevation-ink) / calc(0.19 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 45) calc(var(--elevation-distance-step) * 45) calc(var(--elevation-blur-step) * 63.6)
-            calc(var(--elevation-step) * -11) oklch(var(--elevation-ink) / calc(0.15 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 80) calc(var(--elevation-distance-step) * 80) calc(var(--elevation-blur-step) * 128)
-            calc(var(--elevation-step) * -18) oklch(var(--elevation-ink) / calc(0.09 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * -0.5) calc(var(--elevation-distance-step) * -0.5) calc(var(--elevation-blur-step) * 0)
-            calc(var(--elevation-step) * 0) oklch(var(--elevation-ink) / calc(0.06 * var(--elevation-strength)));
-
-    --elevation-3xl:
-        inset calc(var(--inset-elevation-distance-step) * 1) calc(var(--inset-elevation-distance-step) * 1)
-            calc(var(--inset-elevation-blur-step) * 2.5) 0 oklch(var(--elevation-highlight) / calc(1 * var(--highlight-strength))),
-        inset calc(var(--inset-elevation-distance-step) * -1) calc(var(--inset-elevation-distance-step) * -1)
-            calc(var(--inset-elevation-blur-step) * 2.5) 0 oklch(var(--elevation-ink) / calc(0.24 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 5) calc(var(--elevation-distance-step) * 5) calc(var(--elevation-blur-step) * 7)
-            calc(var(--elevation-step) * -3) oklch(var(--elevation-ink) / calc(0.28 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 14) calc(var(--elevation-distance-step) * 14) calc(var(--elevation-blur-step) * 19.8)
-            calc(var(--elevation-step) * -5) oklch(var(--elevation-ink) / calc(0.24 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 34) calc(var(--elevation-distance-step) * 34) calc(var(--elevation-blur-step) * 48)
-            calc(var(--elevation-step) * -9) oklch(var(--elevation-ink) / calc(0.2 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 70) calc(var(--elevation-distance-step) * 70) calc(var(--elevation-blur-step) * 99)
-            calc(var(--elevation-step) * -15) oklch(var(--elevation-ink) / calc(0.16 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * 120) calc(var(--elevation-distance-step) * 120) calc(var(--elevation-blur-step) * 192)
-            calc(var(--elevation-step) * -25) oklch(var(--elevation-ink) / calc(0.1 * var(--elevation-strength))),
-        calc(var(--elevation-distance-step) * -0.5) calc(var(--elevation-distance-step) * -0.5) calc(var(--elevation-blur-step) * 0)
-            calc(var(--elevation-step) * 0) oklch(var(--elevation-ink) / calc(0.07 * var(--elevation-strength)));
-
-    /* Semantic Outer Elevation Aliases */
-    --elevation-card: var(--elevation-sm);
-    --elevation-panel: var(--elevation-md);
-    --elevation-popover: var(--elevation-lg);
-    --elevation-dialog: var(--elevation-xl);
-    --elevation-dragged: var(--elevation-2xl);
-
-    /* Complete Inset Recessed Elevation Scale */
-    --inset-elevation-2xs:
-        inset calc(var(--inset-elevation-distance-step) * 0) calc(var(--inset-elevation-distance-step) * 0.5)
-            calc(var(--inset-elevation-blur-step) * 1) 0px oklch(var(--elevation-ink) / calc(0.1 * var(--elevation-strength))),
-        inset calc(var(--inset-elevation-distance-step) * 0.5) calc(var(--inset-elevation-distance-step) * -1)
-            calc(var(--inset-elevation-blur-step) * 1) 0px oklch(var(--elevation-ink) / calc(0.05 * var(--elevation-strength)));
-
-    --inset-elevation-xs:
-        inset calc(var(--inset-elevation-distance-step) * 0) calc(var(--inset-elevation-distance-step) * 1)
-            calc(var(--inset-elevation-blur-step) * 1.5) 0px oklch(var(--elevation-ink) / calc(0.12 * var(--elevation-strength))),
-        inset calc(var(--inset-elevation-distance-step) * 0.75) calc(var(--inset-elevation-distance-step) * -1.5)
-            calc(var(--inset-elevation-blur-step) * 1.5) 0px oklch(var(--elevation-ink) / calc(0.06 * var(--elevation-strength)));
-
-    --inset-elevation-sm:
-        inset calc(var(--inset-elevation-distance-step) * 0) calc(var(--inset-elevation-distance-step) * 1) calc(var(--inset-elevation-blur-step) * 2)
-            0px oklch(var(--elevation-ink) / calc(0.15 * var(--elevation-strength))),
-        inset calc(var(--inset-elevation-distance-step) * 1) calc(var(--inset-elevation-distance-step) * -2)
-            calc(var(--inset-elevation-blur-step) * 2) 0px oklch(var(--elevation-ink) / calc(0.08 * var(--elevation-strength)));
-
-    --inset-elevation-md:
-        inset calc(var(--inset-elevation-distance-step) * 0) calc(var(--inset-elevation-distance-step) * 2) calc(var(--inset-elevation-blur-step) * 4)
-            0px oklch(var(--elevation-ink) / calc(0.19 * var(--elevation-strength))),
-        inset calc(var(--inset-elevation-distance-step) * 1.5) calc(var(--inset-elevation-distance-step) * -3)
-            calc(var(--inset-elevation-blur-step) * 4) 0px oklch(var(--elevation-ink) / calc(0.095 * var(--elevation-strength)));
-
-    --inset-elevation-lg:
-        inset calc(var(--inset-elevation-distance-step) * 0) calc(var(--inset-elevation-distance-step) * 3) calc(var(--inset-elevation-blur-step) * 6)
-            0px oklch(var(--elevation-ink) / calc(0.21 * var(--elevation-strength))),
-        inset calc(var(--inset-elevation-distance-step) * 2) calc(var(--inset-elevation-distance-step) * -4)
-            calc(var(--inset-elevation-blur-step) * 6) 0px oklch(var(--elevation-ink) / calc(0.11 * var(--elevation-strength)));
-
-    --inset-elevation-xl:
-        inset calc(var(--inset-elevation-distance-step) * 0) calc(var(--inset-elevation-distance-step) * 4) calc(var(--inset-elevation-blur-step) * 8)
-            0px oklch(var(--elevation-ink) / calc(0.24 * var(--elevation-strength))),
-        inset calc(var(--inset-elevation-distance-step) * 3) calc(var(--inset-elevation-distance-step) * -6)
-            calc(var(--inset-elevation-blur-step) * 8) 0px oklch(var(--elevation-ink) / calc(0.125 * var(--elevation-strength)));
-
-    --inset-elevation-2xl:
-        inset calc(var(--inset-elevation-distance-step) * 0) calc(var(--inset-elevation-distance-step) * 6)
-            calc(var(--inset-elevation-blur-step) * 12) 0px oklch(var(--elevation-ink) / calc(0.27 * var(--elevation-strength))),
-        inset calc(var(--inset-elevation-distance-step) * 4) calc(var(--inset-elevation-distance-step) * -8)
-            calc(var(--inset-elevation-blur-step) * 12) 0px oklch(var(--elevation-ink) / calc(0.145 * var(--elevation-strength)));
-
-    --inset-elevation-3xl:
-        inset calc(var(--inset-elevation-distance-step) * 0) calc(var(--inset-elevation-distance-step) * 8)
-            calc(var(--inset-elevation-blur-step) * 16) 0px oklch(var(--elevation-ink) / calc(0.31 * var(--elevation-strength))),
-        inset calc(var(--inset-elevation-distance-step) * 5) calc(var(--inset-elevation-distance-step) * -10)
-            calc(var(--inset-elevation-blur-step) * 16) 0px oklch(var(--elevation-ink) / calc(0.17 * var(--elevation-strength)));
+    /* Muscle & Anatomy Colors */
+    --muscle-skin: #f2c6a8;
+    --muscle-outline: #3a2f2a;
+    --muscle-non-muscle: #e9d6c8;
+    --muscle-active: #c62828;
+    --muscle-inactive: #f19999;
 }
 
 /* ------------------------------- Dark Theme ------------------------------- */
@@ -393,23 +157,19 @@
     --chart-4: oklch(82% 0.16 85);
     --chart-5: oklch(73% 0.17 300);
 
-    /*
-     * Tactile elevation dark tuning:
-     * Dark surfaces absorb light, requiring denser shadow ink and restrained specular
-     * highlights to maintain depth without jarring white rims. Formulas inherit from :root.
-     */
-    --elevation-ink: 0% 0 0;
-    --elevation-highlight: 100% 0 0;
-    --elevation-strength: 1.65;
-    --highlight-strength: 0.24;
-    --elevation-edge: oklch(var(--elevation-highlight) / calc(0.08 * var(--highlight-strength)));
+    /* Muscle & Anatomy Colors */
+    --muscle-skin: #6b4e3d;
+    --muscle-outline: #221a17;
+    --muscle-non-muscle: #4e3c33;
+    --muscle-active: #ef4444;
+    --muscle-inactive: #6b2e2e;
 }
 
 /* ------------------------- Tailwind Theme Mapping ------------------------- */
 
 @theme inline {
     /* Fonts */
-    --font-sans: var(--font-geist-sans, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
+    --font-sans: var(--font-space-grotesk, Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif);
     --font-mono: var(--font-geist-mono, 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace);
 
     /* Core */
@@ -482,35 +242,6 @@
     --radius-2xl: calc(var(--radius) * 1.8);
     --radius-3xl: calc(var(--radius) * 2.2);
     --radius-4xl: calc(var(--radius) * 2.6);
-
-    /* Outer shadows */
-    --shadow-2xs: var(--elevation-2xs);
-    --shadow-xs: var(--elevation-xs);
-    --shadow-sm: var(--elevation-sm);
-    --shadow: var(--elevation-sm);
-    --shadow-md: var(--elevation-md);
-    --shadow-lg: var(--elevation-lg);
-    --shadow-xl: var(--elevation-xl);
-    --shadow-2xl: var(--elevation-2xl);
-    --shadow-3xl: var(--elevation-3xl);
-
-    /* Semantic outer shadows */
-    --shadow-card: var(--elevation-card);
-    --shadow-panel: var(--elevation-panel);
-    --shadow-popover: var(--elevation-popover);
-    --shadow-dialog: var(--elevation-dialog);
-    --shadow-dragged: var(--elevation-dragged);
-
-    /* Complete inset shadow scale */
-    --inset-shadow-2xs: var(--inset-elevation-2xs);
-    --inset-shadow-xs: var(--inset-elevation-xs);
-    --inset-shadow-sm: var(--inset-elevation-sm);
-    --inset-shadow: var(--inset-elevation-sm);
-    --inset-shadow-md: var(--inset-elevation-md);
-    --inset-shadow-lg: var(--inset-elevation-lg);
-    --inset-shadow-xl: var(--inset-elevation-xl);
-    --inset-shadow-2xl: var(--inset-elevation-2xl);
-    --inset-shadow-3xl: var(--inset-elevation-3xl);
 }
 
 /* ------------------------------- Base Layer ------------------------------- */

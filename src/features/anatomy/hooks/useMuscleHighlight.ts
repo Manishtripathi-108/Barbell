@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react';
 
 type MuscleHighlightOptions = {
-    activeFill: string;
-    inactiveFill: string;
+    activeFill?: string;
+    inactiveFill?: string;
 };
 
 /**
@@ -13,8 +13,10 @@ export const useMuscleHighlight = (
     svgRef: { current: SVGSVGElement | null },
     activeMuscles: string[],
     hoverMuscle: string | null,
-    options: MuscleHighlightOptions
+    options?: MuscleHighlightOptions
 ): void => {
+    const activeFill = options?.activeFill ?? 'var(--muscle-active)';
+    const inactiveFill = options?.inactiveFill ?? 'var(--muscle-inactive)';
     const prevRef = useRef<Set<string>>(new Set());
 
     useEffect(() => {
@@ -38,10 +40,12 @@ export const useMuscleHighlight = (
                 const isHovered = hoverMuscle === id;
                 const isActive = activeSet.has(id);
 
-                el.style.fill = isHovered || isActive ? options.activeFill : options.inactiveFill;
+                el.style.fill = isHovered || isActive ? activeFill : inactiveFill;
             }
         }
 
         prevRef.current = next;
-    }, [svgRef, activeMuscles, hoverMuscle, options.activeFill, options.inactiveFill]);
+    }, [svgRef, activeMuscles, hoverMuscle, activeFill, inactiveFill]);
 };
+
+export default useMuscleHighlight;

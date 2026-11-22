@@ -43,10 +43,8 @@ src/
 │       │   ├── muscleLookup.ts        # Muscle-to-group and ID-to-muscle lookup dictionaries
 │       │   ├── musclesAnterior.ts     # Anterior muscle definitions and movement groups
 │       │   └── musclesPosterior.ts    # Posterior muscle definitions and movement groups
-│       ├── hooks/
-│       │   └── useMuscleHighlight.ts  # Targeted DOM diffing for high-performance SVG highlight updates
-│       └── types/
-│           └── anatomyColors.ts       # SVG color palette tokens and overrides
+│       └── hooks/
+│           └── useMuscleHighlight.ts  # Targeted DOM diffing for high-performance SVG highlight updates
 ├── hooks/
 │   ├── useTheme.ts                    # Hook consuming ThemeContext
 │   └── useToggle.ts                   # Domain-neutral boolean toggle utility hook
