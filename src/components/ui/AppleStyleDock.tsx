@@ -1,5 +1,5 @@
 import Icon from '@/components/ui/Icon';
-import { Dock, DockIcon, DockItem, DockLabel } from '@/components/ui/dock';
+import { Dock, DockIcon, DockItem, DockLabel } from '@/components/ui/Dock';
 
 const data = [
     { title: 'Home', icon: 'appLogo' },
@@ -26,3 +26,5 @@ export function AppleStyleDock() {
         </div>
     );
 }
+
+export default AppleStyleDock;

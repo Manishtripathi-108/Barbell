@@ -1,5 +1,5 @@
-import { ANTERIOR_MUSCLES } from './muscles.anterior';
-import { POSTERIOR_MUSCLES } from './muscles.posterior';
+import { ANTERIOR_MUSCLES } from './musclesAnterior';
+import { POSTERIOR_MUSCLES } from './musclesPosterior';
 
 export const ALL_MUSCLES = [...ANTERIOR_MUSCLES, ...POSTERIOR_MUSCLES] as const;
 

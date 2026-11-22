@@ -3,7 +3,7 @@
 import React from 'react';
 
 import Icon from '@/components/ui/Icon';
-import useTheme from '@/context/useTheme';
+import useTheme from '@/hooks/useTheme';
 import cn from '@/lib/cn';
 
 type ThemeTogglerProps = React.ButtonHTMLAttributes<HTMLButtonElement>;

@@ -1,103 +1,95 @@
 # Project Map
 
-> Starter template. Replace the prompts below with facts about this project. Do not leave guessed examples in the completed map. Update this file when routes, features, data flow, or folder structure change in a meaningful way.
+This document describes the actual architecture, routes, features, and folder relationships of **Barbell Atlas** (`barbell-wiki`).
 
 ## Overview
 
-- **Project purpose:** TODO
-- **Framework and runtime:** TODO
-- **Package manager:** TODO
-- **Database and ORM:** TODO
-- **Authentication:** TODO or not used
-- **Deployment provider:** Chosen by the user. Record the choice when known.
+- **Project purpose:** Interactive barbell training atlas and anatomy visualizer for inspecting muscle movement zones, volume guidance, and workout split programming.
+- **Framework and runtime:** Next.js 16 (App Router), React 19, TypeScript (strict mode), Tailwind CSS v4.
+- **Package manager:** npm
+- **Database and ORM:** Not configured yet (to be selected by the user: Prisma or Drizzle per `AGENTS.md`).
+- **Authentication:** Not required at this stage.
+- **Deployment provider:** Chosen by the user.
 
 ## Top-level structure
 
-Describe only folders that exist in this repository and explain their role.
-
 ```text
-TODO: Add the real project tree for important folders.
+src/
+├── app/
+│   ├── favicon.ico
+│   ├── layout.tsx                     # Root App Router layout, font injection, ThemeScript, ThemeProvider, ToastProvider
+│   └── page.tsx                       # Main anatomy workspace page
+├── components/
+│   ├── providers/
+│   │   ├── ThemeProvider.tsx          # Client theme context provider (modes, color schemes, animated transitions)
+│   │   ├── ThemeScript.tsx            # Anti-flash inline script in <head> for zero-hydration theme flash
+│   │   └── ToastProvider.tsx          # Goey Toast provider following active theme mode
+│   └── ui/
+│       ├── AppleStyleDock.tsx         # Bottom dock launcher with icon magnification
+│       ├── Dock.tsx                   # Motion-driven macOS style dock primitive
+│       ├── Icon.tsx                   # Semantic Iconify wrapper component
+│       └── ThemeToggler.tsx           # Accessible animated mode toggle (Light/Dark/System)
+├── constants/
+│   └── icons.ts                       # Central semantic icon map to Iconify identifiers
+├── features/
+│   └── anatomy/                       # Feature module for interactive muscle atlas
+│       ├── index.ts                   # Public entry point exporting BodyViewer
+│       ├── components/
+│       │   ├── AnteriorSvg.tsx        # Front-body interactive SVG model
+│       │   ├── PosteriorSvg.tsx       # Back-body interactive SVG model
+│       │   └── BodyViewer.tsx         # Combined viewer with basic/advanced split toggle
+│       ├── constants/
+│       │   ├── excluded.ts            # Non-muscle SVG path IDs (bones, joints, outlines)
+│       │   ├── muscleLookup.ts        # Muscle-to-group and ID-to-muscle lookup dictionaries
+│       │   ├── musclesAnterior.ts     # Anterior muscle definitions and movement groups
+│       │   └── musclesPosterior.ts    # Posterior muscle definitions and movement groups
+│       ├── hooks/
+│       │   └── useMuscleHighlight.ts  # Targeted DOM diffing for high-performance SVG highlight updates
+│       └── types/
+│           └── anatomyColors.ts       # SVG color palette tokens and overrides
+├── hooks/
+│   ├── useTheme.ts                    # Hook consuming ThemeContext
+│   └── useToggle.ts                   # Domain-neutral boolean toggle utility hook
+├── lib/
+│   ├── cn.ts                          # clsx and tailwind-merge helper
+│   ├── storage.ts                     # Safe browser localStorage wrapper
+│   └── theme/                         # Color mode, color scheme, transitions, and meta-color sync
+└── styles/
+    ├── globals.css                    # Tailwind v4 import, Ark UI styling, theme palettes, and goey-toast styles
+    ├── ark-ui.css                     # Headless Ark UI style definitions
+    └── theme-palettes.css             # Semantic CSS tokens and theme variables
 ```
 
 ## Routes and layouts
 
-| Route or route group | Layout | Purpose | Main feature |
+| Route | Layout | Purpose | Main feature |
 | --- | --- | --- | --- |
-| TODO | TODO | TODO | TODO |
-
-Include important Route Handler paths and their HTTP methods where relevant.
+| `/` | `src/app/layout.tsx` | Main anatomy workspace & muscle inspection | `anatomy` (`src/features/anatomy`) |
 
 ## Features
 
 | Feature | Client location | Server location | Public entry point | Notes |
 | --- | --- | --- | --- | --- |
-| TODO | `src/features/...` | `src/server/features/...` | TODO | TODO |
-
-Document feature dependencies and public APIs. Do not list every implementation file.
-
-## Server modules
-
-Describe the important server services, database access, authentication, integrations, storage, jobs, and error handling modules.
-
-| Module | Location | Responsibility | Used by |
-| --- | --- | --- | --- |
-| TODO | TODO | TODO | TODO |
+| `anatomy` | `src/features/anatomy/` | N/A (client-side) | `src/features/anatomy/index.ts` | Front and back body SVG models, hover detection, basic/advanced group filtering |
 
 ## Data flow
 
-Describe the main paths through the application. For example, explain when a page reads data in a Server Component, when a client component uses TanStack Query and Axios, and when a mutation uses a Server Action or Route Handler.
+1. **Static Rendering & Anti-Flash**: `RootLayout` (`src/app/layout.tsx`) renders the HTML shell and injects `ThemeScript` in `<head>`. This prevents theme flash by applying `.dark` and `data-theme` before React mounts.
+2. **Theme Synchronization**: `ThemeProvider` initializes theme state via `useSyncExternalStore` against `localStorage` and system media queries. Updates trigger document View Transitions when motion is enabled.
+3. **Muscle Highlight Interaction**: `BodyViewer` manages hover state and granularity. `useMuscleHighlight` diffs modified SVG element IDs directly in the DOM, avoiding complete SVG re-renders of the large 500KB+ paths.
+4. **Dock Animation**: `AppleStyleDock` uses `motion/react` spring physics to scale icons based on mouse cursor proximity.
 
-TODO
+## Icons
 
-## Database
+- **Semantic Mapping:** Defined in `src/constants/icons.ts`.
+- **Component:** `src/components/ui/Icon.tsx` renders icons using `@iconify/react` backed by `IconSet`.
+- Arbitrary inline icon string literals are prohibited across components.
 
-- **ORM:** TODO, selected by the user
-- **Schema location:** TODO
-- **Migration location:** TODO
-- **Important tables or models:** TODO
-- **Data ownership and relationships:** TODO
+## Toasts
 
-## Authentication and authorization
-
-Describe the auth provider, session flow, role or permission model, and where server-side checks run.
-
-TODO or not used
-
-## External integrations and storage
-
-| Provider or service | Client setup | Feature usage | Secrets or configuration |
-| --- | --- | --- | --- |
-| TODO | TODO | TODO | Variable names only. Never record secret values. |
-
-## API and Bruno
-
-- **Response contract:** `src/types/api.ts`
-- **Response helpers and error mapping:** `src/server/api/`
-- **Bruno collection:** `bruno/`
-- **Environment names:** TODO
-- **Important endpoints:** TODO
-
-Describe any external API consumers or special endpoint contracts.
-
-## State and background work
-
-Describe important explicit state machines, Zustand stores, TanStack Query usage, and background job flows. Include state names and transition owners for important workflows.
-
-TODO or not used
-
-## Environment and configuration
-
-List environment variable names and their purpose only. Do not include values, credentials, or secrets.
-
-| Variable | Server or client | Required in | Purpose |
-| --- | --- | --- | --- |
-| TODO | TODO | TODO | TODO |
-
-## Important conventions and exceptions
-
-Record project-specific choices that differ from the root `AGENTS.md`. Link to the relevant nested `AGENTS.md` or ADR rather than copying lengthy instructions.
-
-TODO or none
+- **Default Library:** `goey-toast`.
+- **Mount Point:** `<ToastProvider />` mounted in `src/app/layout.tsx`.
+- **Stylesheet:** `goey-toast/styles.css` imported in `src/styles/globals.css`.
 
 ## Documentation links
 
@@ -105,9 +97,6 @@ TODO or none
 | --- | --- |
 | `AGENTS.md` | Stable project-wide agent rules |
 | `docs/AGENT-CONTEXT.md` | Agent starting guide |
+| `docs/AGENT-TOOLS.md` | Agent tool and skill references |
 | `docs/decisions/` | Architecture Decision Records |
 | `CHANGELOG.md` | Notable changes |
-
-## Maintenance rule
-
-Update this map when a meaningful architecture or folder change alters how an agent should locate or understand the project. Do not update it for routine edits, formatting, or small implementation changes.

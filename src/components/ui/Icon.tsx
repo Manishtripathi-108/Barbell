@@ -2,7 +2,7 @@ import { memo } from 'react';
 
 import { IconProps, Icon as Iconify } from '@iconify/react';
 
-import IconSet, { type Icon } from '@/constants/icons.constants';
+import IconSet, { type Icon } from '@/constants/icons';
 import cn from '@/lib/cn';
 
 type Props = {

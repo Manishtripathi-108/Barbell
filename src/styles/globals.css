@@ -1,6 +1,7 @@
 @import 'tailwindcss';
 @import './ark-ui.css';
 @import './theme-palettes.css';
+@import 'goey-toast/styles.css';
 
 /*
  * Tailwind uses prefers-color-scheme by default.

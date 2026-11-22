@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 
-import { ANATOMY_SVG_COLORS } from '@/components/anatomy/anatomyColors';
-import { useMuscleHighlight } from '@/hooks/useMuscleHighlight';
+import { useMuscleHighlight } from '../hooks/useMuscleHighlight';
+import { ANATOMY_SVG_COLORS } from '../types/anatomyColors';
 
 export const PosteriorSvg = ({
     className,

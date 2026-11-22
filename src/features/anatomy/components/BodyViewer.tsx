@@ -2,10 +2,10 @@
 
 import { useCallback, useMemo, useState } from 'react';
 
-import { EXCLUDED_IDS } from '@/constants/anatomy/excluded';
-import { GROUP_TO_MUSCLES, MUSCLE_BY_ID } from '@/constants/anatomy/muscle.lookup';
 import useToggle from '@/hooks/useToggle';
 
+import { EXCLUDED_IDS } from '../constants/excluded';
+import { GROUP_TO_MUSCLES, MUSCLE_BY_ID } from '../constants/muscleLookup';
 import { AnteriorSvg } from './AnteriorSvg';
 import { PosteriorSvg } from './PosteriorSvg';
 
@@ -66,3 +66,5 @@ export function BodyViewer() {
         </div>
     );
 }
+
+export default BodyViewer;

@@ -1,7 +1,9 @@
 import { Space_Grotesk } from 'next/font/google';
 
-import '@/app/globals.css';
-import { ThemeProvider, ThemeScript } from '@/context/useTheme';
+import { ThemeProvider } from '@/components/providers/ThemeProvider';
+import { ThemeScript } from '@/components/providers/ThemeScript';
+import { ToastProvider } from '@/components/providers/ToastProvider';
+import '@/styles/globals.css';
 
 const spaceGrotesk = Space_Grotesk({
     subsets: ['latin'],
@@ -19,7 +21,10 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
                 <ThemeScript />
             </head>
             <body className={`${spaceGrotesk.variable} bg-background font-sans transition-colors duration-300`}>
-                <ThemeProvider>{children}</ThemeProvider>
+                <ThemeProvider>
+                    {children}
+                    <ToastProvider />
+                </ThemeProvider>
             </body>
         </html>
     );

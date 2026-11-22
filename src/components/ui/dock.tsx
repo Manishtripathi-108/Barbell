@@ -129,7 +129,7 @@ function DockItem({ children, className }: DockItemProps) {
             tabIndex={0}
             role="button"
             aria-haspopup="true">
-            {Children.map(children, (child) => cloneElement(child as React.ReactElement, { width, isHovered }))}
+            {Children.map(children, (child) => cloneElement(child as React.ReactElement<Record<string, unknown>>, { width, isHovered }))}
         </motion.div>
     );
 }
@@ -182,3 +182,4 @@ function DockIcon({ children, className, ...rest }: DockIconProps) {
 }
 
 export { Dock, DockIcon, DockItem, DockLabel };
+export default Dock;
