@@ -97,11 +97,11 @@
     --radius: 0.75rem;
 
     /* Muscle & Anatomy Colors */
-    --muscle-skin: #f2c6a8;
-    --muscle-outline: #3a2f2a;
-    --muscle-non-muscle: #e9d6c8;
-    --muscle-active: #c62828;
-    --muscle-inactive: #f19999;
+    --muscle-skin: oklch(87% 0.035 58);
+    --muscle-outline: oklch(36% 0.025 40);
+    --muscle-non-muscle: oklch(93% 0.012 250);
+    --muscle-active: oklch(55% 0.19 28);
+    --muscle-inactive: oklch(82% 0.065 28);
 }
 
 /* ------------------------------- Dark Theme ------------------------------- */
@@ -158,11 +158,11 @@
     --chart-5: oklch(73% 0.17 300);
 
     /* Muscle & Anatomy Colors */
-    --muscle-skin: #6b4e3d;
-    --muscle-outline: #221a17;
-    --muscle-non-muscle: #4e3c33;
-    --muscle-active: #ef4444;
-    --muscle-inactive: #6b2e2e;
+    --muscle-skin: oklch(47% 0.045 52);
+    --muscle-outline: oklch(13% 0.018 38);
+    --muscle-non-muscle: oklch(24% 0.022 250);
+    --muscle-active: oklch(72% 0.145 28);
+    --muscle-inactive: oklch(50% 0.075 28);
 }
 
 /* ------------------------- Tailwind Theme Mapping ------------------------- */
@@ -247,6 +247,7 @@
 /* ------------------------------- Base Layer ------------------------------- */
 
 @layer base {
+
     *,
     ::before,
     ::after,
@@ -327,6 +328,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
     *,
     *::before,
     *::after {
