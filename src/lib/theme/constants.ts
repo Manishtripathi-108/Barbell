@@ -37,7 +37,7 @@ export const DEFAULT_MODE: ColorMode = 'system';
 export const DEFAULT_SHAPE: TransitionShape = 'circle';
 
 /** Color scheme used when nothing is saved yet. */
-export const DEFAULT_COLOR_SCHEME: ColorScheme = 'cloud';
+export const DEFAULT_COLOR_SCHEME: ColorScheme = 'default';
 
 export const DEFAULT_META_VAR = '--background';
 
@@ -45,6 +45,13 @@ export const DEFAULT_META_VAR = '--background';
 
 /** All available color scheme descriptors with preview metadata. */
 export const COLOR_SCHEMES: readonly ColorSchemeOption[] = [
+    {
+        id: 'default',
+        label: 'Default',
+        description: 'Neutral zinc & slate baseline',
+        swatch: '#27272a',
+        accent: 'oklch(90.8% 0.012 260)',
+    },
     {
         id: 'cloud',
         label: 'Cloud',
@@ -72,139 +79,6 @@ export const COLOR_SCHEMES: readonly ColorSchemeOption[] = [
         description: 'Vibrant modern violet',
         swatch: '#6366f1',
         accent: 'oklch(90% 0.055 285)',
-    },
-    {
-        id: 'graphite',
-        label: 'Graphite',
-        description: 'Monochrome carbon',
-        swatch: '#4b5563',
-        accent: 'oklch(85% 0.008 260)',
-    },
-    {
-        id: 'rose',
-        label: 'Rose',
-        description: 'Soft blush pink',
-        swatch: '#db6686',
-        accent: 'oklch(90.3% 0.05 5)',
-    },
-    {
-        id: 'crimson',
-        label: 'Crimson',
-        description: 'Deep ruby red',
-        swatch: '#cc2538',
-        accent: 'oklch(90.3% 0.05 22)',
-    },
-    {
-        id: 'coral',
-        label: 'Coral',
-        description: 'Sunset coral glow',
-        swatch: '#e96f49',
-        accent: 'oklch(90.3% 0.055 38)',
-    },
-    {
-        id: 'ember',
-        label: 'Ember',
-        description: 'Glowing burnt orange',
-        swatch: '#da720d',
-        accent: 'oklch(90.3% 0.06 55)',
-    },
-    {
-        id: 'amber',
-        label: 'Amber',
-        description: 'Golden honey warmth',
-        swatch: '#daa932',
-        accent: 'oklch(90.3% 0.075 85)',
-    },
-    {
-        id: 'lime',
-        label: 'Lime',
-        description: 'Zesty fresh chartreuse',
-        swatch: '#a5d046',
-        accent: 'oklch(90.3% 0.07 125)',
-    },
-    {
-        id: 'sage',
-        label: 'Sage',
-        description: 'Muted herbal green',
-        swatch: '#7da47e',
-        accent: 'oklch(90.3% 0.032 145)',
-    },
-    {
-        id: 'forest',
-        label: 'Forest',
-        description: 'Dense evergreen canopy',
-        swatch: '#397852',
-        accent: 'oklch(90.3% 0.045 155)',
-    },
-    {
-        id: 'emerald',
-        label: 'Emerald',
-        description: 'Rich polished jewel green',
-        swatch: '#00ad78',
-        accent: 'oklch(90.3% 0.055 163)',
-    },
-    {
-        id: 'mint',
-        label: 'Mint',
-        description: 'Cool crisp spearmint',
-        swatch: '#68cdb7',
-        accent: 'oklch(90.3% 0.045 178)',
-    },
-    {
-        id: 'teal',
-        label: 'Teal',
-        description: 'Calm deep teal',
-        swatch: '#0f9293',
-        accent: 'oklch(90.3% 0.05 195)',
-    },
-    {
-        id: 'lagoon',
-        label: 'Lagoon',
-        description: 'Tropical shallow water',
-        swatch: '#28aac0',
-        accent: 'oklch(90.3% 0.055 212)',
-    },
-    {
-        id: 'sky',
-        label: 'Sky',
-        description: 'Bright open daylight',
-        swatch: '#2eabe1',
-        accent: 'oklch(90.3% 0.055 232)',
-    },
-    {
-        id: 'cobalt',
-        label: 'Cobalt',
-        description: 'Saturated electric blue',
-        swatch: '#0e6ee6',
-        accent: 'oklch(90.3% 0.065 258)',
-    },
-    {
-        id: 'violet',
-        label: 'Violet',
-        description: 'Royal amethyst purple',
-        swatch: '#9253da',
-        accent: 'oklch(90.3% 0.06 302)',
-    },
-    {
-        id: 'orchid',
-        label: 'Orchid',
-        description: 'Playful magenta bloom',
-        swatch: '#cc54c5',
-        accent: 'oklch(90.3% 0.06 330)',
-    },
-    {
-        id: 'mocha',
-        label: 'Mocha',
-        description: 'Roasted espresso brown',
-        swatch: '#8f6752',
-        accent: 'oklch(90.3% 0.035 50)',
-    },
-    {
-        id: 'midnight',
-        label: 'Midnight',
-        description: 'Deep twilight navy',
-        swatch: '#2f4087',
-        accent: 'oklch(90.3% 0.065 270)',
     },
 ] as const;
 

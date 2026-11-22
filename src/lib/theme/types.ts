@@ -41,30 +41,7 @@ export type SetMode = (value: ColorMode | ((current: ColorMode) => ColorMode)) =
  * Each scheme maps to a full set of OKLCH surface, brand, and semantic tokens
  * that propagate across every component, elevation, and interactive control.
  */
-export type ColorScheme =
-    | 'cloud'
-    | 'slate'
-    | 'stone'
-    | 'indigo'
-    | 'graphite'
-    | 'rose'
-    | 'crimson'
-    | 'coral'
-    | 'ember'
-    | 'amber'
-    | 'lime'
-    | 'sage'
-    | 'forest'
-    | 'emerald'
-    | 'mint'
-    | 'teal'
-    | 'lagoon'
-    | 'sky'
-    | 'cobalt'
-    | 'violet'
-    | 'orchid'
-    | 'mocha'
-    | 'midnight';
+export type ColorScheme = 'default' | 'cloud' | 'slate' | 'stone' | 'indigo';
 
 /** Metadata descriptor for a color scheme option. */
 export interface ColorSchemeOption {
