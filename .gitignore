@@ -1,3 +1,5 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
 # dependencies
 /node_modules
 /.pnp
@@ -29,9 +31,7 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-.env
-.env.local
-.env.production
+.env*
 
 # vercel
 .vercel
@@ -42,20 +42,3 @@ next-env.d.ts
 
 # vscode
 .vscode
-
-# prisma generated files
-/src/lib/generated/prisma
-
-# storage folder
-/storage
-
-# sitemap and robots.txt
-*sitemap*.xml
-robots.txt
-
-# Serwist
-public/sw*
-public/swe-worker*
-
-# Local development files
-**/dev

@@ -1,7 +1,7 @@
 import { Space_Grotesk } from 'next/font/google';
 
 import '@/app/globals.css';
-import { ThemeScript } from '@/hooks/useTheme';
+import { ThemeProvider, ThemeScript } from '@/context/useTheme';
 
 const spaceGrotesk = Space_Grotesk({
     subsets: ['latin'],
@@ -18,7 +18,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
                 <meta name="apple-mobile-web-app-title" content="" />
                 <ThemeScript />
             </head>
-            <body className={`${spaceGrotesk.variable} bg-background font-sans transition-colors duration-300`}>{children}</body>
+            <body className={`${spaceGrotesk.variable} bg-background font-sans transition-colors duration-300`}>
+                <ThemeProvider>{children}</ThemeProvider>
+            </body>
         </html>
     );
 };

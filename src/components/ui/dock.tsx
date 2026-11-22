@@ -4,7 +4,7 @@ import { Children, cloneElement, createContext, useContext, useEffect, useMemo, 
 
 import { AnimatePresence, type MotionValue, type SpringOptions, motion, useMotionValue, useSpring, useTransform } from 'motion/react';
 
-import cn from '@/lib/utils/cn';
+import cn from '@/lib/cn';
 
 const DOCK_HEIGHT = 128;
 const DEFAULT_MAGNIFICATION = 80;
