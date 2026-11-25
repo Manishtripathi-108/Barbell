@@ -390,17 +390,6 @@
 
 .anatomy-svg [data-muscle-id].is-selected {
     fill: var(--muscle-active);
-    stroke: var(--foreground);
-    stroke-width: 1.5px;
-    paint-order: stroke fill;
-    vector-effect: non-scaling-stroke;
-}
-
-.anatomy-svg [data-muscle-id].is-pointer-source {
-    /* stroke: var(--ring);
-    stroke-width: 2.5px; */
-    paint-order: stroke fill;
-    vector-effect: non-scaling-stroke;
 }
 
 @media (forced-colors: active) {

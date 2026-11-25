@@ -24,7 +24,7 @@ function applyClassDiff(lookup: Map<string, SVGElement[]>, prevIds: Set<MuscleId
     });
 }
 
-function getClosestMuscle(target: EventTarget | null): { id: MuscleId; el: SVGElement } | null {
+function getClosestMuscleId(target: EventTarget | null): MuscleId | null {
     if (!(target instanceof Element)) return null;
     const el = target.closest<SVGElement>('[data-muscle-id]');
     if (!el) return null;
@@ -32,7 +32,7 @@ function getClosestMuscle(target: EventTarget | null): { id: MuscleId; el: SVGEl
     const id = el.getAttribute('data-muscle-id') as MuscleId | null;
     if (!id || !MUSCLE_ID_SET.has(id)) return null;
 
-    return { id, el };
+    return id;
 }
 
 /**
@@ -49,7 +49,6 @@ export function AnatomyStage({ children }: AnatomyStageProps) {
     const hoveredMuscleRef = useRef<MuscleId | null>(null);
     const previewIdsRef = useRef<Set<MuscleId>>(new Set());
     const selectedIdsRef = useRef<Set<MuscleId>>(new Set());
-    const pointerSourceRef = useRef<SVGElement | null>(null);
 
     useEffect(() => {
         const container = stageRef.current;
@@ -100,24 +99,17 @@ export function AnatomyStage({ children }: AnatomyStageProps) {
             unsubscribe();
             lookup.forEach((elements) => {
                 elements.forEach((el) => {
-                    el.classList.remove('is-selected', 'is-preview', 'is-pointer-source');
+                    el.classList.remove('is-selected', 'is-preview');
                 });
             });
             lookup.clear();
             selectedIdsRef.current.clear();
             previewIdsRef.current.clear();
             hoveredMuscleRef.current = null;
-            pointerSourceRef.current = null;
         };
     }, []);
 
-    const updateHoverPreview = (muscleId: MuscleId | null, sourceEl: SVGElement | null) => {
-        if (pointerSourceRef.current !== sourceEl) {
-            pointerSourceRef.current?.classList.remove('is-pointer-source');
-            sourceEl?.classList.add('is-pointer-source');
-            pointerSourceRef.current = sourceEl;
-        }
-
+    const updateHoverPreview = (muscleId: MuscleId | null) => {
         if (hoveredMuscleRef.current === muscleId) return;
         hoveredMuscleRef.current = muscleId;
 
@@ -130,21 +122,20 @@ export function AnatomyStage({ children }: AnatomyStageProps) {
 
     const handlePointerOver = (e: React.PointerEvent<HTMLDivElement>) => {
         if (e.pointerType === 'touch') return;
-        const match = getClosestMuscle(e.target);
-        updateHoverPreview(match?.id ?? null, match?.el ?? null);
+        updateHoverPreview(getClosestMuscleId(e.target));
     };
 
     const handlePointerLeave = (e: React.PointerEvent<HTMLDivElement>) => {
         if (e.pointerType === 'touch') return;
-        updateHoverPreview(null, null);
+        updateHoverPreview(null);
     };
 
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        const match = getClosestMuscle(e.target);
-        if (!match) return;
+        const muscleId = getClosestMuscleId(e.target);
+        if (!muscleId) return;
 
         const { mode, selectTarget } = useAnatomyStore.getState();
-        selectTarget(resolveTarget(match.id, mode));
+        selectTarget(resolveTarget(muscleId, mode));
     };
 
     return (

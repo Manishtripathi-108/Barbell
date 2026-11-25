@@ -72,7 +72,7 @@ src/
 
 1. **Static Rendering & Anti-Flash**: `RootLayout` (`src/app/layout.tsx`) renders the HTML shell, `<meta name="color-scheme" content="light dark" />`, and `ThemeScript` in `<head>`.
 2. **Theme Synchronization**: `ThemeProvider` initializes theme state via `useSyncExternalStore` against `localStorage` and system media queries. Updates trigger document View Transitions when motion is enabled.
-3. **Zero-Render Anatomy Interaction**: `BodyViewer` renders static `AnteriorSvg` and `PosteriorSvg` on the server so the 600KB+ SVG geometry stays out of the client JS bundle. `AnatomyStage` caches `[data-muscle-id]` elements once on mount, subscribes directly to Zustand in `useEffect`, and updates `.is-preview`, `.is-selected`, and `.is-pointer-source` classes directly on the DOM with zero React re-renders.
+3. **Zero-Render Anatomy Interaction**: `BodyViewer` renders static `AnteriorSvg` and `PosteriorSvg` on the server so the 600KB+ SVG geometry stays out of the client JS bundle. `AnatomyStage` caches `[data-muscle-id]` elements once on mount, subscribes directly to Zustand in `useEffect`, and updates `.is-preview`, `.is-selected` classes directly on the DOM with zero React re-renders.
 
 ## Icons
 
