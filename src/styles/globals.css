@@ -247,7 +247,6 @@
 /* ------------------------------- Base Layer ------------------------------- */
 
 @layer base {
-
     *,
     ::before,
     ::after,
@@ -328,7 +327,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-
     *,
     *::before,
     *::after {
@@ -337,4 +335,42 @@
         scroll-behavior: auto !important;
         transition-duration: 0.01ms !important;
     }
+}
+
+/* ----------------------- Anatomy Viewer Interactions ---------------------- */
+
+.anatomy-svg [data-muscle-id] {
+    fill: var(--muscle-inactive);
+    cursor: pointer;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .anatomy-svg [data-muscle-id] {
+        transition:
+            fill 120ms cubic-bezier(0.2, 0, 0, 1),
+            stroke 120ms cubic-bezier(0.2, 0, 0, 1);
+    }
+}
+
+.anatomy-svg [data-muscle-id].is-preview {
+    fill: color-mix(in oklch, var(--muscle-active) 75%, var(--muscle-inactive));
+}
+
+.anatomy-svg [data-muscle-id].is-selected {
+    fill: var(--muscle-active);
+    stroke: color-mix(in oklch, var(--foreground) 50%, transparent);
+    stroke-width: 1.5px;
+    paint-order: stroke fill;
+    vector-effect: non-scaling-stroke;
+}
+
+.anatomy-svg [data-muscle-id].is-selected.is-preview {
+    fill: var(--muscle-active);
+}
+
+.anatomy-svg [data-muscle-id].is-pointer-source {
+    stroke: var(--ring) !important;
+    stroke-width: 2.5px !important;
+    paint-order: stroke fill;
+    vector-effect: non-scaling-stroke;
 }

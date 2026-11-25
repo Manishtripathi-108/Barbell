@@ -135,7 +135,7 @@
     --muscle-outline: oklch(13% 0.018 38);
     --muscle-non-muscle: oklch(24% 0.022 250);
     --muscle-inactive: oklch(50% 0.075 250);
-    --muscle-active: oklch(72% 0.130 250);
+    --muscle-active: oklch(72% 0.13 250);
 }
 
 :root[data-theme='stone'] {

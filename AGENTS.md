@@ -336,20 +336,20 @@ Never use `GET` or `POST` to delete a resource. Prefer resource URLs, such as `P
 
 Use these status codes and helpers where they fit:
 
-| Status | Scenario | Helper |
-| --- | --- | --- |
-| 200 | Successful read, update, or action | `apiSuccess` |
-| 201 | Resource created | `apiCreated` |
-| 202 | Asynchronous job queued | `apiAccepted` |
-| 204 | Successful deletion or empty action | `apiNoContent` |
-| 400 | Malformed JSON or invalid syntax | `apiBadRequest` |
-| 401 | Missing or invalid authentication | `apiUnauthorized` |
-| 403 | Authenticated but not permitted | `apiForbidden` |
-| 404 | Resource does not exist | `apiNotFound` |
-| 409 | State conflict or duplicate | `apiConflict` |
-| 422 | Input validation failure, such as Zod validation | `apiValidationError` via `handleRouteError` |
-| 429 | Rate limit exceeded | `apiRateLimited` |
-| 500 | Unhandled exception | `apiInternalError` via `handleRouteError` |
+| Status | Scenario                                         | Helper                                      |
+| ------ | ------------------------------------------------ | ------------------------------------------- |
+| 200    | Successful read, update, or action               | `apiSuccess`                                |
+| 201    | Resource created                                 | `apiCreated`                                |
+| 202    | Asynchronous job queued                          | `apiAccepted`                               |
+| 204    | Successful deletion or empty action              | `apiNoContent`                              |
+| 400    | Malformed JSON or invalid syntax                 | `apiBadRequest`                             |
+| 401    | Missing or invalid authentication                | `apiUnauthorized`                           |
+| 403    | Authenticated but not permitted                  | `apiForbidden`                              |
+| 404    | Resource does not exist                          | `apiNotFound`                               |
+| 409    | State conflict or duplicate                      | `apiConflict`                               |
+| 422    | Input validation failure, such as Zod validation | `apiValidationError` via `handleRouteError` |
+| 429    | Rate limit exceeded                              | `apiRateLimited`                            |
+| 500    | Unhandled exception                              | `apiInternalError` via `handleRouteError`   |
 
 `apiNoContent` must produce an empty HTTP 204 response. Do not attach an `ApiResponse` body to a 204 status.
 

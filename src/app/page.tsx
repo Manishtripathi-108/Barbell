@@ -1,5 +1,5 @@
 import ThemeToggler from '@/components/ui/ThemeToggler';
-import { BodyViewer } from '@/features/anatomy';
+import { AnatomyDetailsPanel, BodyViewer } from '@/features/anatomy';
 
 export default function Home() {
     return (
@@ -32,10 +32,8 @@ export default function Home() {
 
                     <aside className="space-y-5">
                         <section className="bg-card text-card-foreground rounded-xl border p-5 shadow-sm sm:p-6">
-                            <h3 className="text-sm font-semibold tracking-wide uppercase">Session Notes</h3>
-                            <p className="text-muted-foreground mt-3 text-sm leading-relaxed">
-                                Selected muscles, volume guidance, and exercise recommendations can be rendered in this panel.
-                            </p>
+                            <h3 className="text-sm font-semibold tracking-wide uppercase">Active Selection</h3>
+                            <AnatomyDetailsPanel />
                         </section>
 
                         <section className="bg-card text-card-foreground rounded-xl border p-5 shadow-sm sm:p-6">
@@ -58,7 +56,6 @@ export default function Home() {
                     </aside>
                 </main>
             </div>
-
         </div>
     );
 }

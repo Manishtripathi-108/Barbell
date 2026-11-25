@@ -13,14 +13,14 @@ Do not scan the whole repository unless the task requires it or the needed conte
 
 ## Documentation index
 
-| Document | Purpose | When to read |
-| --- | --- | --- |
-| [`../AGENTS.md`](../AGENTS.md) | Project-wide rules and working conventions | Every task |
-| [`PROJECT-MAP.md`](PROJECT-MAP.md) | Actual project structure and how major modules connect | Every task, focusing on relevant areas |
-| [`decisions/README.md`](decisions/README.md) | Architecture Decision Record rules | When making or changing a major architectural decision |
-| [`decisions/0000-template.md`](decisions/0000-template.md) | ADR template | When recording a major decision |
-| [`AGENT-TOOLS.md`](AGENT-TOOLS.md) | Installed agent skill and MCP references | When using the related library or tool |
-| [`../CHANGELOG.md`](../CHANGELOG.md) | Notable user-facing changes and fixes | When a task causes a notable change |
+| Document                                                   | Purpose                                                | When to read                                           |
+| ---------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------ |
+| [`../AGENTS.md`](../AGENTS.md)                             | Project-wide rules and working conventions             | Every task                                             |
+| [`PROJECT-MAP.md`](PROJECT-MAP.md)                         | Actual project structure and how major modules connect | Every task, focusing on relevant areas                 |
+| [`decisions/README.md`](decisions/README.md)               | Architecture Decision Record rules                     | When making or changing a major architectural decision |
+| [`decisions/0000-template.md`](decisions/0000-template.md) | ADR template                                           | When recording a major decision                        |
+| [`AGENT-TOOLS.md`](AGENT-TOOLS.md)                         | Installed agent skill and MCP references               | When using the related library or tool                 |
+| [`../CHANGELOG.md`](../CHANGELOG.md)                       | Notable user-facing changes and fixes                  | When a task causes a notable change                    |
 
 ## Architecture reminders
 
@@ -42,22 +42,22 @@ Do not scan the whole repository unless the task requires it or the needed conte
 
 Update this list as the project takes shape.
 
-| Area | Project file or folder | Notes |
-| --- | --- | --- |
-| App configuration | `src/config/` | App-specific settings and validated environment access |
-| Browser HTTP client | `src/config/http.ts` | Shared Axios instance |
-| Icon map | `src/constants/icons.ts` | Semantic keys mapped to Iconify identifiers |
-| API response types | `src/types/api.ts` | Source of truth for `ApiResponse<T>` |
-| API helpers and route error mapping | `src/server/api/` | Response helpers and `handleRouteError` |
-| Domain error classes | `src/server/errors/` | Typed errors thrown by server logic |
-| Server authentication | `src/server/auth/` | Auth library integration and server checks |
-| Server integrations | `src/server/integrations/` | Provider clients and SDK setup |
-| Storage | `src/server/storage/` | Storage abstraction and provider implementations |
-| Feature UI | `src/features/` | Feature-owned UI and client logic |
-| Feature server logic | `src/server/features/` | Feature-owned business logic |
-| Global styles and tokens | `src/styles/` | Global styles, design tokens, themes, vendor overrides |
-| Bruno collection | `bruno/` | Manual API requests grouped by feature |
-| Database | User-selected location | `prisma/` for Prisma or `src/server/db/` for Drizzle |
+| Area                                | Project file or folder     | Notes                                                  |
+| ----------------------------------- | -------------------------- | ------------------------------------------------------ |
+| App configuration                   | `src/config/`              | App-specific settings and validated environment access |
+| Browser HTTP client                 | `src/config/http.ts`       | Shared Axios instance                                  |
+| Icon map                            | `src/constants/icons.ts`   | Semantic keys mapped to Iconify identifiers            |
+| API response types                  | `src/types/api.ts`         | Source of truth for `ApiResponse<T>`                   |
+| API helpers and route error mapping | `src/server/api/`          | Response helpers and `handleRouteError`                |
+| Domain error classes                | `src/server/errors/`       | Typed errors thrown by server logic                    |
+| Server authentication               | `src/server/auth/`         | Auth library integration and server checks             |
+| Server integrations                 | `src/server/integrations/` | Provider clients and SDK setup                         |
+| Storage                             | `src/server/storage/`      | Storage abstraction and provider implementations       |
+| Feature UI                          | `src/features/`            | Feature-owned UI and client logic                      |
+| Feature server logic                | `src/server/features/`     | Feature-owned business logic                           |
+| Global styles and tokens            | `src/styles/`              | Global styles, design tokens, themes, vendor overrides |
+| Bruno collection                    | `bruno/`                   | Manual API requests grouped by feature                 |
+| Database                            | User-selected location     | `prisma/` for Prisma or `src/server/db/` for Drizzle   |
 
 Remove or amend rows that do not apply to the actual project. Do not create these files or folders solely to satisfy this table.
 

@@ -60,14 +60,14 @@ src/
 
 ## Routes and layouts
 
-| Route | Layout | Purpose | Main feature |
-| --- | --- | --- | --- |
-| `/` | `src/app/layout.tsx` | Main anatomy workspace & muscle inspection | `anatomy` (`src/features/anatomy`) |
+| Route | Layout               | Purpose                                    | Main feature                       |
+| ----- | -------------------- | ------------------------------------------ | ---------------------------------- |
+| `/`   | `src/app/layout.tsx` | Main anatomy workspace & muscle inspection | `anatomy` (`src/features/anatomy`) |
 
 ## Features
 
-| Feature | Client location | Server location | Public entry point | Notes |
-| --- | --- | --- | --- | --- |
+| Feature   | Client location         | Server location   | Public entry point              | Notes                                                                           |
+| --------- | ----------------------- | ----------------- | ------------------------------- | ------------------------------------------------------------------------------- |
 | `anatomy` | `src/features/anatomy/` | N/A (client-side) | `src/features/anatomy/index.ts` | Front and back body SVG models, hover detection, basic/advanced group filtering |
 
 ## Data flow
@@ -91,10 +91,10 @@ src/
 
 ## Documentation links
 
-| Document | Purpose |
-| --- | --- |
-| `AGENTS.md` | Stable project-wide agent rules |
-| `docs/AGENT-CONTEXT.md` | Agent starting guide |
-| `docs/AGENT-TOOLS.md` | Agent tool and skill references |
-| `docs/decisions/` | Architecture Decision Records |
-| `CHANGELOG.md` | Notable changes |
+| Document                | Purpose                         |
+| ----------------------- | ------------------------------- |
+| `AGENTS.md`             | Stable project-wide agent rules |
+| `docs/AGENT-CONTEXT.md` | Agent starting guide            |
+| `docs/AGENT-TOOLS.md`   | Agent tool and skill references |
+| `docs/decisions/`       | Architecture Decision Records   |
+| `CHANGELOG.md`          | Notable changes                 |
