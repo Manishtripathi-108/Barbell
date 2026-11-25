@@ -15,12 +15,12 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     return (
         <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth" className="scroll-smooth">
             <head>
-                {/* <script crossOrigin="anonymous" src="//unpkg.com/react-scan/dist/auto.global.js" async /> */}
+                <meta name="color-scheme" content="light dark" />
                 <meta name="google-site-verification" content="" />
                 <meta name="apple-mobile-web-app-title" content="" />
                 <ThemeScript />
             </head>
-            <body className={`${spaceGrotesk.variable} bg-background font-sans transition-colors duration-300`}>
+            <body className={`${spaceGrotesk.variable} bg-background font-sans`}>
                 <ThemeProvider>
                     {children}
                     <ToastProvider />

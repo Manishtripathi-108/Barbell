@@ -1,4 +1,4 @@
-import { getSavedItem, isBrowser, safeGetItem, safeSetItem, subscribeToStorage } from '@/lib/storage';
+import { getSavedItem, isBrowser, safeSetItem, subscribeToStorage } from '@/lib/storage';
 
 import {
     DARK_QUERY,
@@ -41,7 +41,7 @@ export const getSavedMode = (): ColorMode => {
  *
  * @returns `'dark'` or `'light'`.
  */
-export const getSystemMode = (): ActiveMode => (isBrowser ? (window.matchMedia(DARK_QUERY).matches ? 'dark' : 'light') : 'dark');
+export const getSystemMode = (): ActiveMode => (isBrowser ? (window.matchMedia(DARK_QUERY).matches ? 'dark' : 'light') : 'light');
 
 /**
  * Turns a mode into the active mode that should be shown.
@@ -83,9 +83,6 @@ export const applyModeToDOM = (activeMode: ActiveMode): void => {
  * so other components and tabs stay in sync.
  *
  * @param mode - The mode to save.
- * @param activeMode - The resolved active mode.
- * @param duration - Animation duration in ms.
- * @param shape - The current transition shape.
  */
 export const persistMode = (mode: ColorMode): void => {
     if (!isBrowser) return;
@@ -108,19 +105,17 @@ export function subscribeToMode(onChange: () => void): () => void {
 
 /* --------------------------------- Shape ---------------------------------- */
 
+function isValidShape(value: unknown): value is TransitionShape {
+    return typeof value === 'string' && TRANSITION_SHAPES.some((option) => option.id === value);
+}
+
 /**
  * Reads the saved transition shape from localStorage.
  *
  * @returns The saved shape, or `'circle'` if nothing valid is saved or storage fails.
  */
 export const getSavedShape = (): TransitionShape => {
-    const saved = safeGetItem(SHAPE_STORAGE_KEY);
-
-    if (saved && TRANSITION_SHAPES.some((option) => option.id === saved)) {
-        return saved as TransitionShape;
-    }
-
-    return DEFAULT_SHAPE;
+    return getSavedItem(SHAPE_STORAGE_KEY, isValidShape, DEFAULT_SHAPE);
 };
 
 /**

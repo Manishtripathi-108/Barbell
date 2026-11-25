@@ -25,7 +25,7 @@ const ThemeToggler = ({ className, ...props }: ThemeTogglerProps) => {
             aria-label={`Theme: ${themeText}. Switch to ${nextMode} mode.`}
             title={`Theme: ${themeText}. Click to switch to ${nextMode} mode.`}
             className={cn(
-                'bg-card text-card-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring/60 inline-flex h-10 items-center gap-2 rounded-full border px-3.5 text-xs font-semibold tracking-[0.08em] uppercase shadow-sm transition-colors focus-visible:ring-2 focus-visible:outline-none',
+                'bg-card text-card-foreground hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring/60 squircle inline-flex h-10 items-center gap-2 rounded-2xl border px-3.5 text-xs font-semibold tracking-[0.08em] uppercase shadow-sm transition-colors focus-visible:ring-2 focus-visible:outline-none',
                 className
             )}
             {...props}>

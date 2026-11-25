@@ -25,26 +25,24 @@ src/
 │   │   ├── ThemeScript.tsx            # Anti-flash inline script in <head> for zero-hydration theme flash
 │   │   └── ToastProvider.tsx          # Goey Toast provider following active theme mode
 │   └── ui/
-│       ├── AppleStyleDock.tsx         # Bottom dock launcher with icon magnification
-│       ├── Dock.tsx                   # Motion-driven macOS style dock primitive
 │       ├── Icon.tsx                   # Semantic Iconify wrapper component
 │       └── ThemeToggler.tsx           # Accessible animated mode toggle (Light/Dark/System)
 ├── constants/
 │   └── icons.ts                       # Central semantic icon map to Iconify identifiers
 ├── features/
 │   └── anatomy/                       # Feature module for interactive muscle atlas
-│       ├── index.ts                   # Public entry point exporting BodyViewer
+│       ├── index.ts                   # Public entry point for anatomy feature
+│       ├── store.ts                   # Zustand store for anatomy mode and selection
+│       ├── utils.ts                   # Label formatting and target resolution helpers
 │       ├── components/
-│       │   ├── AnteriorSvg.tsx        # Front-body interactive SVG model
-│       │   ├── PosteriorSvg.tsx       # Back-body interactive SVG model
-│       │   └── BodyViewer.tsx         # Combined viewer with basic/advanced split toggle
-│       ├── constants/
-│       │   ├── excluded.ts            # Non-muscle SVG path IDs (bones, joints, outlines)
-│       │   ├── muscleLookup.ts        # Muscle-to-group and ID-to-muscle lookup dictionaries
-│       │   ├── musclesAnterior.ts     # Anterior muscle definitions and movement groups
-│       │   └── musclesPosterior.ts    # Posterior muscle definitions and movement groups
-│       └── hooks/
-│           └── useMuscleHighlight.ts  # Targeted DOM diffing for high-performance SVG highlight updates
+│       │   ├── AnatomyDetailsPanel.tsx # External selection details consumer
+│       │   ├── AnatomyStage.tsx       # Client interaction controller (event delegation, path lookup, direct DOM diffing)
+│       │   ├── AnatomyToolbar.tsx     # Client granularity toggle and selection indicator
+│       │   ├── AnteriorSvg.tsx        # Server-rendered front-body SVG artwork with data-muscle-id attributes
+│       │   ├── BodyViewer.tsx         # Server Component composing toolbar, stage, and SVG views
+│       │   └── PosteriorSvg.tsx       # Server-rendered back-body SVG artwork with data-muscle-id attributes
+│       └── constants/
+│           └── muscles.ts             # Canonical muscle catalog and derived group lookups
 ├── hooks/
 │   ├── useTheme.ts                    # Hook consuming ThemeContext
 │   └── useToggle.ts                   # Domain-neutral boolean toggle utility hook
@@ -53,9 +51,9 @@ src/
 │   ├── storage.ts                     # Safe browser localStorage wrapper
 │   └── theme/                         # Color mode, color scheme, transitions, and meta-color sync
 └── styles/
-    ├── globals.css                    # Tailwind v4 import, Ark UI styling, theme palettes, and goey-toast styles
+    ├── globals.css                    # Tailwind v4 import, Ark UI styling, squircle rules, anatomy CSS, goey-toast styles
     ├── ark-ui.css                     # Headless Ark UI style definitions
-    └── theme-palettes.css             # Semantic CSS tokens and theme variables
+    └── theme-palettes.css             # Semantic OKLCH CSS tokens and anatomy variables for all 5 themes
 ```
 
 ## Routes and layouts
@@ -66,16 +64,15 @@ src/
 
 ## Features
 
-| Feature   | Client location         | Server location   | Public entry point              | Notes                                                                           |
-| --------- | ----------------------- | ----------------- | ------------------------------- | ------------------------------------------------------------------------------- |
-| `anatomy` | `src/features/anatomy/` | N/A (client-side) | `src/features/anatomy/index.ts` | Front and back body SVG models, hover detection, basic/advanced group filtering |
+| Feature   | Client location         | Server location   | Public entry point              | Notes                                                                                 |
+| --------- | ----------------------- | ----------------- | ------------------------------- | ------------------------------------------------------------------------------------- |
+| `anatomy` | `src/features/anatomy/` | N/A (client-side) | `src/features/anatomy/index.ts` | Server-rendered SVGs with delegated client class diffing and Zustand global selection |
 
 ## Data flow
 
-1. **Static Rendering & Anti-Flash**: `RootLayout` (`src/app/layout.tsx`) renders the HTML shell and injects `ThemeScript` in `<head>`. This prevents theme flash by applying `.dark` and `data-theme` before React mounts.
+1. **Static Rendering & Anti-Flash**: `RootLayout` (`src/app/layout.tsx`) renders the HTML shell, `<meta name="color-scheme" content="light dark" />`, and `ThemeScript` in `<head>`.
 2. **Theme Synchronization**: `ThemeProvider` initializes theme state via `useSyncExternalStore` against `localStorage` and system media queries. Updates trigger document View Transitions when motion is enabled.
-3. **Muscle Highlight Interaction**: `BodyViewer` manages hover state and granularity. `useMuscleHighlight` diffs modified SVG element IDs directly in the DOM, avoiding complete SVG re-renders of the large 500KB+ paths.
-4. **Dock Animation**: `AppleStyleDock` uses `motion/react` spring physics to scale icons based on mouse cursor proximity.
+3. **Zero-Render Anatomy Interaction**: `BodyViewer` renders static `AnteriorSvg` and `PosteriorSvg` on the server so the 600KB+ SVG geometry stays out of the client JS bundle. `AnatomyStage` caches `[data-muscle-id]` elements once on mount, subscribes directly to Zustand in `useEffect`, and updates `.is-preview`, `.is-selected`, and `.is-pointer-source` classes directly on the DOM with zero React re-renders.
 
 ## Icons
 

@@ -4,7 +4,7 @@ import { AnatomyDetailsPanel, BodyViewer } from '@/features/anatomy';
 export default function Home() {
     return (
         <div className="bg-background relative min-h-screen overflow-hidden">
-            <div className="from-primary/8 pointer-events-none absolute inset-x-0 -top-48 h-96 bg-linear-to-b to-transparent blur-2xl" />
+            <div className="from-primary/8 pointer-events-none absolute inset-x-0 -top-24 h-72 bg-radial-[at_50%_0%] to-transparent" />
 
             <div className="mx-auto flex min-h-screen max-w-6xl flex-col px-5 pt-8 pb-10 sm:px-8 lg:px-10">
                 <header className="mb-8 flex items-start justify-between gap-4 sm:mb-10">
@@ -19,35 +19,35 @@ export default function Home() {
                 </header>
 
                 <main className="grid flex-1 grid-cols-1 gap-5 lg:grid-cols-[1.45fr_0.85fr]">
-                    <section className="bg-card text-card-foreground rounded-xl border p-5 shadow-sm sm:p-7">
+                    <section className="bg-card text-card-foreground squircle rounded-2xl border p-5 shadow-sm sm:p-7">
                         <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
                             <h2 className="text-lg font-semibold tracking-tight sm:text-xl">Interactive Muscle Viewer</h2>
-                            <span className="bg-muted text-muted-foreground rounded-full px-3 py-1 text-xs font-medium">Front + Back</span>
+                            <span className="bg-muted text-muted-foreground squircle rounded-full px-3 py-1 text-xs font-medium">Front + Back</span>
                         </div>
 
-                        <div className="bg-background/80 rounded-xl border p-3 sm:p-4">
+                        <div className="bg-background/80 squircle rounded-2xl border p-3 sm:p-4">
                             <BodyViewer />
                         </div>
                     </section>
 
                     <aside className="space-y-5">
-                        <section className="bg-card text-card-foreground rounded-xl border p-5 shadow-sm sm:p-6">
+                        <section className="bg-card text-card-foreground squircle rounded-2xl border p-5 shadow-sm sm:p-6">
                             <h3 className="text-sm font-semibold tracking-wide uppercase">Active Selection</h3>
                             <AnatomyDetailsPanel />
                         </section>
 
-                        <section className="bg-card text-card-foreground rounded-xl border p-5 shadow-sm sm:p-6">
+                        <section className="bg-card text-card-foreground squircle rounded-2xl border p-5 shadow-sm sm:p-6">
                             <h3 className="text-sm font-semibold tracking-wide uppercase">Flow</h3>
                             <div className="mt-4 space-y-3">
-                                <div className="bg-background rounded-lg border p-3">
+                                <div className="bg-background squircle rounded-xl border p-3">
                                     <p className="text-muted-foreground text-xs font-semibold tracking-[0.15em] uppercase">01 Hover</p>
                                     <p className="mt-1 text-sm">Discover target and supporting muscles instantly.</p>
                                 </div>
-                                <div className="bg-background rounded-lg border p-3">
+                                <div className="bg-background squircle rounded-xl border p-3">
                                     <p className="text-muted-foreground text-xs font-semibold tracking-[0.15em] uppercase">02 Toggle</p>
                                     <p className="mt-1 text-sm">Switch between basic and advanced granularity.</p>
                                 </div>
-                                <div className="bg-background rounded-lg border p-3">
+                                <div className="bg-background squircle rounded-xl border p-3">
                                     <p className="text-muted-foreground text-xs font-semibold tracking-[0.15em] uppercase">03 Program</p>
                                     <p className="mt-1 text-sm">Build smarter routines around selected zones.</p>
                                 </div>

@@ -2,13 +2,7 @@
 
 import { GROUP_TO_MUSCLES, MUSCLES } from '../constants/muscles';
 import { useAnatomyStore } from '../store';
-
-function formatGroupLabel(groupId: string): string {
-    return groupId
-        .split('-')
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join(' ');
-}
+import { formatGroupLabel } from '../utils';
 
 export function AnatomyDetailsPanel() {
     const selectedTarget = useAnatomyStore((state) => state.selectedTarget);
@@ -67,7 +61,7 @@ export function AnatomyDetailsPanel() {
 
             <div className="flex flex-wrap gap-1.5 pt-1">
                 {constituentMuscles.map((id) => (
-                    <span key={id} className="bg-muted text-muted-foreground rounded-md px-2 py-1 text-xs">
+                    <span key={id} className="bg-muted text-muted-foreground squircle rounded-lg px-2.5 py-1 text-xs">
                         {MUSCLES[id]?.name ?? id}
                     </span>
                 ))}

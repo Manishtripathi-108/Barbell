@@ -16,4 +16,4 @@ export {
 
 export { useAnatomyStore, type AnatomyMode, type AnatomySelection } from './store';
 
-export { resolveTarget, getTargetMuscleIds } from './utils';
+export { formatGroupLabel, getSelectionLabel, resolveTarget, getTargetMuscleIds } from './utils';
