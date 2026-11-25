@@ -24,7 +24,11 @@ export const ThemeScript = () => {
                             document.documentElement.classList.toggle('dark', isDark);
 
                             const scheme = localStorage.getItem('${COLOR_SCHEME_STORAGE_KEY}') || '${DEFAULT_COLOR_SCHEME}';
-                            document.documentElement.setAttribute('data-theme', scheme);
+                            if (scheme !== '${DEFAULT_COLOR_SCHEME}') {
+                                document.documentElement.setAttribute('data-theme', scheme);
+                            } else {
+                                document.documentElement.removeAttribute('data-theme');
+                            }
                         } catch (e) {
                             console.error("Error applying theme:", e);
                         }

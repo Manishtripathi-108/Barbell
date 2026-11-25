@@ -35,6 +35,7 @@ export function getNextColorScheme(current: ColorScheme): ColorScheme {
 
 /**
  * Applies the color scheme to the root element's `data-theme` attribute
+ * (removing it for the default scheme so `:root` / `.dark` in `globals.css` apply)
  * and updates the `<meta name="theme-color">` tag using the default metavar.
  *
  * @param scheme - The color scheme to apply.
@@ -42,7 +43,12 @@ export function getNextColorScheme(current: ColorScheme): ColorScheme {
 export function applyColorSchemeToDOM(scheme: ColorScheme): void {
     if (!isBrowser) return;
 
-    document.documentElement.setAttribute('data-theme', scheme);
+    if (scheme === DEFAULT_COLOR_SCHEME) {
+        document.documentElement.removeAttribute('data-theme');
+    } else {
+        document.documentElement.setAttribute('data-theme', scheme);
+    }
+
     updateMetaColor();
 }
 
