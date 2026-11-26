@@ -17,13 +17,13 @@
     --ring: oklch(58% 0.16 255);
     --sidebar: oklch(94% 0.01 255);
     --sidebar-accent: oklch(90.5% 0.018 255);
-    --muscle-skin: oklch(89% 0.018 72);
-    --muscle-outline: oklch(22% 0.018 255);
-    --muscle-non-muscle: oklch(97% 0.008 255);
-    --muscle-eyes: oklch(97% 0.005 90);
-    --muscle-inactive: oklch(76% 0.065 245);
-    --muscle-preview: oklch(63% 0.125 245);
-    --muscle-active: oklch(51% 0.135 248);
+    --muscle-skin: oklch(93.8% 0.036 72);
+    --muscle-outline: oklch(8% 0.01 255);
+    --muscle-non-muscle: oklch(62% 0.13 244);
+    --muscle-eyes: oklch(100% 0 0);
+    --muscle-inactive: oklch(86% 0.055 242);
+    --muscle-preview: oklch(72% 0.12 244);
+    --muscle-active: oklch(59% 0.15 248);
 }
 
 :root.dark[data-theme='cloud'] {
@@ -42,13 +42,13 @@
     --ring: oklch(73% 0.14 255);
     --sidebar: oklch(20.5% 0.02 255);
     --sidebar-accent: oklch(30% 0.03 255);
-    --muscle-skin: oklch(49% 0.02 255);
-    --muscle-outline: oklch(11% 0.018 255);
-    --muscle-non-muscle: oklch(89% 0.015 255);
-    --muscle-eyes: oklch(88% 0.012 255);
-    --muscle-inactive: oklch(61% 0.08 245);
-    --muscle-preview: oklch(70% 0.115 245);
-    --muscle-active: oklch(77% 0.115 248);
+    --muscle-skin: oklch(84% 0.03 72);
+    --muscle-outline: oklch(6% 0.01 255);
+    --muscle-non-muscle: oklch(59% 0.125 244);
+    --muscle-eyes: oklch(96% 0.004 255);
+    --muscle-inactive: oklch(77% 0.06 242);
+    --muscle-preview: oklch(66% 0.12 244);
+    --muscle-active: oklch(56% 0.145 248);
 }
 
 :root[data-theme='slate'] {
@@ -67,13 +67,13 @@
     --ring: oklch(56% 0.18 250);
     --sidebar: oklch(92.5% 0.016 250);
     --sidebar-accent: oklch(88.5% 0.035 250);
-    --muscle-skin: oklch(88% 0.018 72);
-    --muscle-outline: oklch(21% 0.022 250);
-    --muscle-non-muscle: oklch(96.5% 0.01 250);
-    --muscle-eyes: oklch(97% 0.005 90);
-    --muscle-inactive: oklch(75% 0.07 238);
-    --muscle-preview: oklch(63% 0.115 238);
-    --muscle-active: oklch(51% 0.12 242);
+    --muscle-skin: oklch(93.5% 0.032 70);
+    --muscle-outline: oklch(8% 0.012 250);
+    --muscle-non-muscle: oklch(60% 0.125 238);
+    --muscle-eyes: oklch(100% 0 0);
+    --muscle-inactive: oklch(85% 0.052 238);
+    --muscle-preview: oklch(71% 0.115 240);
+    --muscle-active: oklch(57% 0.14 244);
 }
 
 :root.dark[data-theme='slate'] {
@@ -92,13 +92,13 @@
     --ring: oklch(72% 0.17 250);
     --sidebar: oklch(19.5% 0.025 250);
     --sidebar-accent: oklch(30% 0.045 250);
-    --muscle-skin: oklch(48% 0.022 250);
-    --muscle-outline: oklch(10% 0.02 250);
-    --muscle-non-muscle: oklch(89% 0.016 245);
-    --muscle-eyes: oklch(88% 0.012 250);
-    --muscle-inactive: oklch(60% 0.085 235);
-    --muscle-preview: oklch(70% 0.11 235);
-    --muscle-active: oklch(77% 0.11 238);
+    --muscle-skin: oklch(83.5% 0.028 70);
+    --muscle-outline: oklch(6% 0.012 250);
+    --muscle-non-muscle: oklch(58% 0.12 238);
+    --muscle-eyes: oklch(96% 0.004 250);
+    --muscle-inactive: oklch(76% 0.055 238);
+    --muscle-preview: oklch(65% 0.115 240);
+    --muscle-active: oklch(54% 0.135 244);
 }
 
 :root[data-theme='stone'] {
@@ -117,13 +117,13 @@
     --ring: oklch(58% 0.16 65);
     --sidebar: oklch(93.5% 0.02 85);
     --sidebar-accent: oklch(90% 0.035 80);
-    --muscle-skin: oklch(89% 0.022 80);
-    --muscle-outline: oklch(23% 0.022 55);
-    --muscle-non-muscle: oklch(97% 0.008 85);
-    --muscle-eyes: oklch(97% 0.006 85);
-    --muscle-inactive: oklch(75% 0.075 36);
-    --muscle-preview: oklch(63% 0.135 34);
-    --muscle-active: oklch(51% 0.17 32);
+    --muscle-skin: oklch(94% 0.042 78);
+    --muscle-outline: oklch(8% 0.012 55);
+    --muscle-non-muscle: oklch(61.5% 0.16 32);
+    --muscle-eyes: oklch(100% 0 0);
+    --muscle-inactive: oklch(85.5% 0.072 38);
+    --muscle-preview: oklch(71.5% 0.145 34);
+    --muscle-active: oklch(59% 0.185 30);
 }
 
 :root.dark[data-theme='stone'] {
@@ -142,13 +142,13 @@
     --ring: oklch(75% 0.14 75);
     --sidebar: oklch(21.5% 0.025 70);
     --sidebar-accent: oklch(31% 0.04 75);
-    --muscle-skin: oklch(49% 0.022 75);
-    --muscle-outline: oklch(11% 0.018 55);
-    --muscle-non-muscle: oklch(89% 0.014 85);
-    --muscle-eyes: oklch(88% 0.012 85);
-    --muscle-inactive: oklch(61% 0.085 36);
-    --muscle-preview: oklch(70% 0.125 34);
-    --muscle-active: oklch(76% 0.13 32);
+    --muscle-skin: oklch(84.5% 0.036 76);
+    --muscle-outline: oklch(6% 0.012 55);
+    --muscle-non-muscle: oklch(59% 0.155 32);
+    --muscle-eyes: oklch(96% 0.005 85);
+    --muscle-inactive: oklch(77% 0.072 38);
+    --muscle-preview: oklch(66% 0.14 34);
+    --muscle-active: oklch(56% 0.175 30);
 }
 
 :root[data-theme='indigo'] {
@@ -167,13 +167,13 @@
     --ring: oklch(57% 0.18 285);
     --sidebar: oklch(94% 0.015 285);
     --sidebar-accent: oklch(90% 0.04 285);
-    --muscle-skin: oklch(89% 0.016 72);
-    --muscle-outline: oklch(22% 0.025 285);
-    --muscle-non-muscle: oklch(97% 0.008 285);
-    --muscle-eyes: oklch(97% 0.005 90);
-    --muscle-inactive: oklch(76% 0.075 285);
-    --muscle-preview: oklch(63% 0.145 285);
-    --muscle-active: oklch(50% 0.2 285);
+    --muscle-skin: oklch(93.8% 0.036 72);
+    --muscle-outline: oklch(8% 0.014 285);
+    --muscle-non-muscle: oklch(61% 0.165 282);
+    --muscle-eyes: oklch(100% 0 0);
+    --muscle-inactive: oklch(86% 0.062 282);
+    --muscle-preview: oklch(72% 0.135 284);
+    --muscle-active: oklch(58% 0.205 285);
 }
 
 :root.dark[data-theme='indigo'] {
@@ -192,11 +192,11 @@
     --ring: oklch(76% 0.14 285);
     --sidebar: oklch(20% 0.03 285);
     --sidebar-accent: oklch(31% 0.06 285);
-    --muscle-skin: oklch(48% 0.022 280);
-    --muscle-outline: oklch(10% 0.022 285);
-    --muscle-non-muscle: oklch(89% 0.016 285);
-    --muscle-eyes: oklch(88% 0.012 285);
-    --muscle-inactive: oklch(61% 0.09 285);
-    --muscle-preview: oklch(70% 0.125 285);
-    --muscle-active: oklch(77% 0.11 285);
+    --muscle-skin: oklch(84% 0.03 72);
+    --muscle-outline: oklch(6% 0.014 285);
+    --muscle-non-muscle: oklch(59% 0.16 282);
+    --muscle-eyes: oklch(96% 0.004 285);
+    --muscle-inactive: oklch(77% 0.065 282);
+    --muscle-preview: oklch(66% 0.135 284);
+    --muscle-active: oklch(56% 0.195 285);
 }

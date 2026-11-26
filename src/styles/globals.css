@@ -97,13 +97,13 @@
     --radius: 0.9rem;
 
     /* Muscle & Anatomy Colors */
-    --muscle-skin: oklch(89% 0.02 72);
-    --muscle-outline: oklch(22% 0.015 260);
-    --muscle-non-muscle: oklch(97% 0.006 90);
-    --muscle-eyes: oklch(97% 0.005 90);
-    --muscle-inactive: oklch(75% 0.08 25);
-    --muscle-preview: oklch(63% 0.145 25);
-    --muscle-active: oklch(51% 0.19 25);
+    --muscle-skin: lab(93.1856% 4.28939 15.9104);
+    --muscle-outline: lab(0 0 0);
+    --muscle-non-muscle: lab(55 62.81 36.6);
+    --muscle-eyes: lab(100% 0 0);
+    --muscle-inactive: lab(83 25.52 13.38);
+    --muscle-preview: lab(66 54.11 25.85);
+    --muscle-active: lab(52 79.48 52.86);
 
     /* Goey Toast Theme Sync */
     --gooey-fill: var(--popover);
@@ -167,13 +167,13 @@
     --chart-5: oklch(73% 0.17 300);
 
     /* Muscle & Anatomy Colors */
-    --muscle-skin: oklch(80% 0.01793 72.963);
-    --muscle-outline: oklch(11% 0.015 260);
-    --muscle-non-muscle: oklch(89% 0.014 90);
-    --muscle-eyes: oklch(88% 0.012 85);
-    --muscle-inactive: oklch(61% 0.085 25);
-    --muscle-preview: oklch(70% 0.125 25);
-    --muscle-active: oklch(76% 0.135 25);
+    --muscle-skin: oklch(84% 0.036 74);
+    --muscle-outline: oklch(0% 0 0);
+    --muscle-non-muscle: oklch(59% 0.185 24);
+    --muscle-eyes: oklch(96% 0.004 90);
+    --muscle-inactive: oklch(76% 0.08 24);
+    --muscle-preview: oklch(65% 0.16 22);
+    --muscle-active: oklch(55% 0.22 25);
 }
 
 /* ------------------------- Tailwind Theme Mapping ------------------------- */
@@ -282,7 +282,7 @@
     }
 
     ::selection {
-        background-color: color-mix(in oklab, var(--primary) 18%, transparent);
+        background-color: color-mix(in oklch, var(--primary) 18%, transparent);
         color: var(--foreground);
     }
 
@@ -304,11 +304,11 @@
 
 @utility scrollbar-thin {
     scrollbar-width: thin;
-    scrollbar-color: color-mix(in oklab, var(--foreground) 22%, transparent) transparent;
+    scrollbar-color: color-mix(in oklch, var(--foreground) 22%, transparent) transparent;
     scrollbar-gutter: stable;
 
     &:hover {
-        scrollbar-color: color-mix(in oklab, var(--foreground) 42%, transparent) transparent;
+        scrollbar-color: color-mix(in oklch, var(--foreground) 42%, transparent) transparent;
     }
 
     &::-webkit-scrollbar {
@@ -321,7 +321,7 @@
     }
 
     &::-webkit-scrollbar-thumb {
-        background: color-mix(in oklab, var(--foreground) 22%, transparent);
+        background: color-mix(in oklch, var(--foreground) 22%, transparent);
         border: 2px solid transparent;
         border-radius: 9999px;
         corner-shape: squircle;
@@ -329,7 +329,7 @@
     }
 
     &:hover::-webkit-scrollbar-thumb {
-        background: color-mix(in oklab, var(--foreground) 42%, transparent);
+        background: color-mix(in oklch, var(--foreground) 42%, transparent);
         border: 2px solid transparent;
         background-clip: padding-box;
     }
